@@ -36,9 +36,9 @@ body {
 }
 
 .container-title {
-  margin-top: 56px;
   font-size: 22px;
   font-weight: 700;
+  margin-top: 56px;
   text-transform: uppercase;
 }
 
@@ -55,6 +55,7 @@ body {
   margin-top: 40px;
   margin-bottom: 94px;
   border-radius: 4px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   background-color: #16a085;
 }
