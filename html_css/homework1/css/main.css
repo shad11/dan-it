@@ -1,9 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  letter-spacing: 0.25em;
   background-color: #f5f6f7;
+}
+
+.font-roboto {
+  font: 400 16px 'Roboto', sans-serif;
+  letter-spacing: 0.25em;
 }
 
 .nav {
@@ -12,10 +15,11 @@ body {
   background-color: #ffffff;
 }
 
-.nav-item {
+.nav-link {
   color: #16a085;
   margin: 30px;
   font-size: 18px;
+  font-weight: 900;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -28,21 +32,21 @@ body {
 .container {
   width: 1059px;
   margin: 0 auto;
-  font-size: 16px;
   text-align: center;
 }
 
-.container .header {
-  font-size: 22px;
+.container-title {
   margin-top: 56px;
+  font-size: 22px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
-.container p {
+.container-text {
   margin: 30px 0;
 }
 
-.btn-st {
+.btn-start {
   color: white;
   border: none;
   padding: 20px 40px;
@@ -51,13 +55,12 @@ body {
   margin-top: 40px;
   margin-bottom: 94px;
   border-radius: 4px;
-  letter-spacing: 0.25em;
   text-transform: uppercase;
   background-color: #16a085;
 }
 
 .footer {
-  background-color: #ffffff;
   padding: 40px 100px;
   text-align: right;
+  background-color: #ffffff;
 }
