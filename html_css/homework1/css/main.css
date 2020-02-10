@@ -1,12 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f5f6f7;
-}
-
-.font-roboto {
   font: 400 16px 'Roboto', sans-serif;
   letter-spacing: 0.25em;
+  background-color: #f5f6f7;
 }
 
 .nav {
@@ -35,14 +32,14 @@ body {
   text-align: center;
 }
 
-.container-title {
+.title {
   font-size: 22px;
   font-weight: 700;
   margin-top: 56px;
   text-transform: uppercase;
 }
 
-.container-text {
+.container p {
   margin: 30px 0;
 }
 
