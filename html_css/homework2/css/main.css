@@ -1,6 +1,6 @@
 @import url(//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro);
 
-body {
+.container {
   width: 1280px;
   margin: 0 auto;
   font-family: 'Myriad Pro', AdobeInvisFont, Courier, sans-serif;
@@ -25,18 +25,17 @@ body {
   margin-top: 45px;
   text-align: center;
   background-color: #35444f;
-  line-height: 69px;
 }
 
-.nav-top .nav-link {
+.nav-top-link {
   color: white;
+  display: inline-block;
   padding: 22px 41px;
   font-size: 24px;
-  vertical-align: middle;
   text-decoration: none;
 }
 
-.nav-top .nav-link:hover {
+.nav-top-link:hover {
   border-left: 1px solid #818181;
   border-right: 1px solid #818181;
   background-color: #222f3a;
@@ -52,7 +51,7 @@ body {
   vertical-align: top;
 }
 
-.nav-left .nav-link {
+.nav-left-link {
   color: rgba(72, 88, 99, 255);
   width: 100%;
   display: inline-block;
@@ -62,7 +61,7 @@ body {
   text-decoration: none;
 }
 
-.nav-left .nav-link:hover {
+.nav-left-link:hover {
   color: #000000;
   padding-left: 69px;
   background-color: #dbdbdb;
@@ -91,13 +90,13 @@ body {
   transform: scale(1.3);
 }
 
-.container {
+.main-text {
   width: 820px;
   color: rgba(44, 44, 44, 255);
   margin: 50px auto;
 }
 
-.container p {
+.main-text p {
   margin: 30px 0;
   font-size: 18px;
   line-height: initial;
@@ -115,7 +114,7 @@ body {
   line-height: 69px;
 }
 
-.nav-footer .nav-link {
+.nav-footer-link {
   color: #0c1927;
   font-size: 28px;
   margin-right: 15px;
@@ -123,7 +122,7 @@ body {
   text-decoration: none;
 }
 
-.nav-footer .nav-link:hover {
+.nav-footer-link:hover {
   color: #4288a9;
   border-bottom: 1px solid #4288a9;
 }
