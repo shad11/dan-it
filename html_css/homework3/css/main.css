@@ -1,0 +1,200 @@
+@import url(http://allfont.ru/allfont.css?fonts=courier);
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  background-image: url("../assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg::after {
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.container {
+  font: 400 18px AdobeInvisFont, 'Courier',﻿Verdana;
+  color: #fff;
+  width: 1070px;
+  margin: 0 auto;
+}
+
+.header {
+  padding-top: 49px;
+}
+
+.header::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.logo {
+  font: 700 18px AdobeInvisFont, Verdana, Courier;
+  float: left;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: #f26522;
+}
+
+.logo-img {
+  width: 46px;
+  height: 44px;
+  display: inline-block;
+  background-image: url("../assets/logo.png");
+}
+
+.logo:hover .logo-img {
+  background-image: url("../assets/logoHover.png");
+}
+
+.logo-txt {
+  display: inline-block;
+}
+
+.logo-txt-m {
+  font-size: 29px;
+}
+
+.contacts {
+  float: right;
+  text-align: right;
+  padding-top: 8px;
+}
+
+.main {
+  margin-top: 45px;
+}
+
+.main::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.tour-link {
+  float: left;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.img-block {
+  width: 312px;
+  height: 205px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to top, #000, #fff);
+}
+
+.tour-img {
+  width: 307px;
+  height: 200px;
+  margin: 3px 2px 2px 3px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.tour-info {
+  top: 142px;
+  color: transparent;
+  width: 307px;
+  height: 58px;
+  position: absolute;
+  margin-top: 64px;
+  transition: all 2s ease;
+  border-style: solid;
+  border-color: transparent;
+  border-top-width: 3px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 3px;
+}
+
+.tour-link:hover .tour-info {
+  color: #fff;
+  margin-top: 0;
+  border-color: #f26522;
+  background-color: #f26522;
+}
+
+.tour-price {
+  float: left;
+  padding: 13px 0 0 18px;
+  font-size: 10px;
+  text-align: left;
+}
+
+.tour-price-e {
+  font-size: 20px;
+}
+
+.tour-detail {
+  float: right;
+  padding: 32px 15px 0 0;
+  font-size: 14px;
+}
+
+.tour-detail::after {
+  content: '>';
+  padding-left: 15px;
+}
+
+.tour-name {
+  margin: 20px 0 55px;
+}
+
+.tour-link:hover .tour-name {
+  color: #f26522;
+}
+
+.split-img {
+  margin: 65px 0 0 65px;
+  float: left;
+}
+
+.back-shopping {
+  background-image: url("../assets/shopping.png");
+}
+
+.back-sightseeing {
+  background-image: url("../assets/sightseeing.png");
+}
+
+.back-food {
+  background-image: url("../assets/food.png");
+}
+
+.back-bars {
+  background-image: url("../assets/nightlife.png");
+}
+
+.back-art {
+  background-image: url("../assets/art.png");
+}
+
+.back-walking {
+  background-image: url("../assets/walking.png");
+}
+
+.footer {
+  width: 1070px;
+  bottom: 20px;
+  position: absolute;
+  font-size: 12px;
+  text-align: center;
+}
