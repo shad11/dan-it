@@ -1,25 +1,26 @@
 @import url(http://allfont.ru/allfont.css?fonts=courier);
 
 html, body {
-  height: 100%;
   margin: 0;
+  height: 100%;
 }
 
-.bg {
-  background-image: url("../assets/background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
+.container-bg {
+  height: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.bg::after {
+.container-bg::before {
   content: '';
-  top: 0;
   right: 0;
   bottom: 0;
+  top: 0;
   left: 0;
-  z-index: -1;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  background: url("../assets/background.png") no-repeat fixed;
+  background-size: cover;
 }
 
 .container {
@@ -192,9 +193,12 @@ html, body {
 }
 
 .footer {
-  width: 1070px;
-  bottom: 20px;
+  left: 50%;
+  bottom: 0;
   position: absolute;
+  transform: translateX(-50%);
   font-size: 12px;
   text-align: center;
+  line-height: 60px;
+  vertical-align: middle;
 }
