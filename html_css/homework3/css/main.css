@@ -26,8 +26,12 @@ html, body {
 .container {
   font: 400 18px AdobeInvisFont, 'Courier',﻿Verdana;
   color: #fff;
-  width: 1070px;
+  width: 1066px;
   margin: 0 auto;
+}
+
+.container p {
+  line-height: 0;
 }
 
 .header {
@@ -81,7 +85,7 @@ html, body {
   margin-top: 45px;
 }
 
-.main::after {
+.clearfix::after {
   content: '';
   clear: both;
   display: block;
@@ -90,8 +94,13 @@ html, body {
 .tour-link {
   float: left;
   color: #fff;
+  margin: 0 65px 55px 0;
   text-align: center;
   text-decoration: none;
+}
+
+.tour-link-last {
+  margin-right: 0;
 }
 
 .img-block {
@@ -156,16 +165,11 @@ html, body {
 }
 
 .tour-name {
-  margin: 20px 0 55px;
+  margin-top: 20px;
 }
 
 .tour-link:hover .tour-name {
   color: #f26522;
-}
-
-.split-img {
-  margin: 65px 0 0 65px;
-  float: left;
 }
 
 .back-shopping {
