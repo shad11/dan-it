@@ -1,0 +1,314 @@
+@import url(http://allfont.ru/allfont.css?fonts=courier);
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* background image */
+.bg-container {
+  height: 100%;
+  background: url("../assets/back.png") no-repeat fixed;
+  background-size: cover;
+}
+
+/* sprite */
+.icon {
+  display: inline-block;
+  background-image: url("../assets/spritesheet.png");
+  background-repeat: no-repeat;
+}
+
+/* header */
+.header {
+  color: #fff;
+  height: 56px;
+  background-color: rgba(0, 0, 0, 0.41);
+  transition: all 1s ease;
+}
+
+.header-title {
+  top: 50%;
+  font: 700 20px Verdana, AdobeInvisFont, Courier;
+  float: left;
+  position: relative;
+  transform: translateY(-50%);
+  margin-left: 81px;
+  text-transform: uppercase;
+}
+
+.header:hover .header-title {
+  color: #3cb878;
+}
+
+.header-block {
+  top: 50%;
+  float: right;
+  position: relative;
+  transform: translateY(-50%);
+  margin-right: 75px;
+}
+
+/* icons */
+.header-icons {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-icons .icon {
+  margin-right: 28px;
+}
+
+.icon.calendar {
+  width: 19px;
+  height: 19px;
+  background-position: -5px -61px;
+}
+
+.header:hover .icon.calendar {
+  background-position: -5px -90px;
+}
+
+.icon.forum {
+  width: 28px;
+  height: 20px;
+  background-position: -5px -119px;
+}
+
+.header:hover .icon.forum {
+  background-position: -5px -149px;
+}
+
+.icon.journey {
+  width: 20px;
+  height: 20px;
+  background-position: -5px -179px;
+}
+
+.header:hover .icon.journey {
+  background-position: -5px -209px;
+}
+
+/* header welcome block */
+.header-line {
+  width: 1px;
+  height: 19px;
+  display: inline-block;
+  margin-right: 24px;
+  vertical-align: middle;
+  background-color: #32302f;
+}
+
+.header-welcome {
+  font: 400 14px AdobeInvisFont,﻿Courier, Verdana;
+  display: inline-block;
+}
+
+.text-green {
+  color: #3cb878;
+}
+
+.header::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+/* main section */
+.container {
+  top: 50%;
+  width: 444px;
+  margin: 0 auto;
+  position: relative;
+  transform: translateY(-50%);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.square {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  margin-top: 29px;
+  background-color: #3cb878;
+}
+
+/* main form */
+.main-form {
+  font: 400 14px AdobeInvisFont, Courier, Verdana;
+  color: rgba(67, 67, 67, 255);
+  width: 322px;
+  margin: 0 auto;
+  padding: 29px 0 32px;
+}
+
+.sign {
+  color: inherit;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.login {
+  color: #3cb878;
+  float: right;
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+/* clearfix */
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+/* form buttons */
+.form-button {
+  font: 400 14px AdobeInvisFont, Courier, Verdana;
+  color: #fff;
+  width: 157px;
+  border: none;
+  padding: 0;
+  float: left;
+  margin-top: 15px;
+  text-align: left;
+  line-height: 46px;
+  border-radius: 3px;
+}
+
+.button-icon {
+  width: 47px;
+  height: 28px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.icon.fb {
+  width: 10px;
+  height: 25px;
+  background-position: -5px -5px;
+}
+
+.icon.google {
+  width: 25px;
+  height: 23px;
+  background-position: -5px -35px;
+}
+
+.button-txt {
+  width: 109px;
+  display: inline-block;
+  text-align: center;
+}
+
+.button-fb {
+  margin-right: 8px;
+  background-color: #305db8;
+}
+
+.button-g {
+  background-color: #df4a32;
+}
+
+.or-line {
+  color: rgba(132, 132, 132, 255);
+  font-size: 14px;
+  margin-top: 33px;
+  line-height: 14px;
+}
+
+.line {
+  width: 135px;
+  height: 1px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #eaeaea;
+}
+
+.line-text {
+  margin: 0 17px;
+}
+
+.main-form input {
+  font: 400 14px AdobeInvisFont,﻿Courier, Verdana;
+  width: 322px;
+  border: 1px solid #eaeaea;
+  outline: none;
+  padding: 18px 0 18px 19px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  margin-bottom: 9px;
+}
+
+.main-form input:focus {
+  color: rgba(67, 67, 67, 255);
+  box-shadow: 0 5px 8px #d6d6d6;
+}
+
+.main-form input::placeholder {
+  color: rgba(190, 190, 190, 255);
+}
+
+.first-input {
+  margin-top: 18px;
+}
+
+.license {
+  margin-top: 10px;
+}
+
+/* checkbox */
+.checkbox {
+  position: absolute;
+  margin: 10px 0 0 20px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.checkbox + label {
+  position: relative;
+  padding: 0 0 0 30px;
+  cursor: pointer;
+}
+
+.checkbox + label:before {
+  content: '';
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #eaeaea;
+  position: absolute;
+  border-radius: 3px;
+}
+
+.checkbox:checked + label::after {
+  content: '';
+  top: 3px;
+  left: 7px;
+  width: 5px;
+  height: 9px;
+  border: solid #3cb878;
+  position: absolute;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox:checked + label .text-green {
+  text-decoration: underline;
+}
+
+.create-btn {
+  font: 400 16px AdobeInvisFont, Courier, Verdana;
+  width: 322px;
+  color: #fff;
+  border: none;
+  padding: 17px 0;
+  margin-top: 25px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #3cb878;
+}
