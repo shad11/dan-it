@@ -1,0 +1,130 @@
+@import "https://fonts.googleapis.com/css?family=Arimo:400,700&display=swap";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+.table {
+  font: 400 16px AdobeInvisFont, Arimo, Courier;
+  color: rgba(72, 72, 72, 255);
+  text-align: center;
+  text-transform: uppercase;
+  border-collapse: collapse;
+}
+
+.table th, td {
+  width: 277px;
+  box-shadow: 2px 0 2px #d9d9d9;
+  border: none;
+  padding: 0;
+}
+
+.table td:last-of-type {
+  box-shadow: none;
+}
+
+.table p {
+  margin: 0;
+}
+
+.col1 {
+  width: 310px;
+}
+
+/* table header */
+.thead {
+  background-color: #fafafa;
+  font-weight: 700;
+}
+
+.thead1 {
+  color: #fff;
+  height: 70px;
+  font-size: 24px;
+}
+
+.text-choose {
+  font-size: 18px
+}
+
+.text-plan {
+  font-size:  30px;
+}
+
+.back-green {
+  background-color: #89c331;
+}
+
+.back-red {
+  background-color: #f04a56;
+}
+
+.back-turquoise {
+  background-color: #20807c;
+}
+
+.thead2 {
+  width: 86px;
+}
+
+.price {
+  display: inline-block;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.price-txt {
+  display: inline-block;
+  font-size: 18px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.coins {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* table footer */
+.tfoot tr {
+  background-color: #f4f4f4;
+}
+
+.tfoot td {
+  height: 111px;
+}
+
+.tfoot-btn {
+  font: 700 16px AdobeInvisFont, Arimo, Courier;
+  color: #fff;
+  width: 192px;
+  height: 49px;
+  border: none;
+  border-bottom: 7px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.tfoot-btn:hover {
+  border-bottom: none;
+  font-size: 20px;
+}
+
+.back-grey {
+  background-color: #484848;
+}
+
+/* table body */
+.tbody td {
+  height: 69px;
+}
+
+.tr-light {
+  background-color: #f2f2f2;
+}
+
+.tr-dark {
+  background-color: #e3e3e3;
+}
+
+.icon {
+  color: #848484;
+  margin-right: 12px;
+}
