@@ -4,6 +4,8 @@
 .table {
   font: 400 16px AdobeInvisFont, Arimo, Courier;
   color: rgba(72, 72, 72, 255);
+  margin: 0 auto;
+  border: 22px solid #3a4965;
   text-align: center;
   text-transform: uppercase;
   border-collapse: collapse;
@@ -24,7 +26,7 @@
   margin: 0;
 }
 
-.col1 {
+.col-first {
   width: 310px;
 }
 
@@ -34,7 +36,7 @@
   font-weight: 700;
 }
 
-.thead1 {
+.thead-first-row {
   color: #fff;
   height: 70px;
   font-size: 24px;
