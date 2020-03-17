@@ -1,0 +1,339 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+html, body {
+  margin: 0;
+}
+
+.container-main {
+  width: 1900px;
+}
+
+.container {
+  width: 1168px;
+  margin: 0 auto;
+}
+
+.navbar {
+  font: 600 15px 'Open Sans', AdobeInvisFont, Courier;
+  color: #fff;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1d2124;
+}
+
+.navbar-logo-block {
+  display: flex;
+  align-self: stretch;
+}
+
+.navbar-icon {
+  width: 69px;
+  line-height: 70px;
+  text-align: center;
+  background-color: #1a1d20;
+}
+
+.logo-icon {
+  width: 27px;
+  height: 27px;
+}
+
+.navbar-img {
+  vertical-align: middle;
+}
+
+.navbar-txt {
+  font-size: 22px;
+  font-weight: 700;
+  padding-left: 6px;
+  align-self: center;
+}
+
+.nav {
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: #fff;
+  margin-right: 36px;
+  text-decoration: none;
+}
+
+.search {
+  width: 69px;
+  line-height: 70px;
+  text-align: center;
+  background-color: #1a1d20;
+}
+
+.header {
+  height: 375px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.header::before {
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  position: absolute;
+  background: url("../assets/header-bg.jpeg") center fixed;
+}
+
+.header-title {
+  font: 400 27px 'Open Sans', AdobeInvisFont, Courier;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header-buttons {
+  margin-top: 44px;
+}
+
+.header-button {
+  font: 600 18px 'Open Sans', AdobeInvisFont, Courier;
+  color: #fff;
+  width: 170px;
+  height: 55px;
+  border: none;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.btn-subscribe {
+  background-color: #89ca62;
+}
+
+.btn-articles {
+  background-color: #14b9d5;
+}
+
+.popular-posts {
+  font: 700 18px 'Open Sans', AdobeInvisFont,﻿Courier;
+  color: rgba(53, 58, 61, 255);
+  padding: 63px 0 50px;
+  background-color: #f2f2f2;
+}
+
+.popular-posts-header {
+  color: rgba(24, 180, 207, 255);
+  font-size: 27px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.popular-posts-block {
+  height: 874px;
+  margin-top: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  flex-direction: column;
+}
+
+.popular-post {
+  width: 370px;
+  margin-bottom: 31px;
+  background-color: #fff;
+}
+
+.popular-post-title {
+  padding: 20px 0 22px;
+  text-align: center;
+}
+
+.clients {
+  height: 590px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.clients::after {
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  position: absolute;
+  background: url("../assets/parallax-bg.jpeg") center fixed;
+}
+
+.clients-container {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-row-gap: 60px;
+  grid-column-gap: 74px;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(4, min-content);
+  grid-template-areas:
+    "title title title title"
+    "line line line line"
+    "client-one client-two client-three client-four"
+}
+
+.clients-title {
+  font: 700 32px 'Open Sans', AdobeInvisFont, Courier;
+  color: #fff;
+  grid-area: title;
+  text-transform: uppercase;
+}
+
+.clients-line {
+  grid-area: line;
+}
+
+.client-one {
+  grid-area: client-one;
+}
+
+.client-two {
+  grid-area: client-two;
+}
+
+.client-three {
+  grid-area: client-three;
+}
+
+.client-four {
+  grid-area: client-four;
+}
+
+.client-line {
+  width: 60px;
+  display: inline-block;
+  border-top: 3px solid #169cb4;
+}
+
+.latest-posts-title {
+  font: 700 27px 'Open Sans', AdobeInvisFont, Courier;
+  color: rgba(24, 180, 207, 255);
+  padding: 63px 0 52px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.latest-posts-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 271px);
+  justify-content: center;
+  grid-auto-flow: row;
+}
+
+.hot-news-header {
+  font: 700 27px 'Open Sans', AdobeInvisFont, Courier;
+  color: rgba(24, 180, 207, 255);
+  padding: 60px 0 51px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.hot-news-block {
+  display: grid;
+  grid-row-gap: 42px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 259px auto auto 259px;
+}
+
+.hot-news-col-l {
+  width: 554px;
+  grid-column: 1 / 3;
+  background-color: #f9f7f7;
+}
+
+.hot-news-col-l-lg {
+  width: 856px;
+  grid-column: 1 / 4;
+  background-color: #f9f7f7;
+}
+
+.hot-news-col-l-sm {
+  justify-self: start;
+  background-color: #f9f7f7;
+}
+
+.hot-news-col-r {
+  width: 554px;
+  grid-column: 3 / 5;
+  justify-self: end;
+  background-color: #f9f7f7;
+}
+
+.hot-news-col-r-lg {
+  width: 856px;
+  grid-column: 2 / 5;
+  justify-self: end;
+  background-color: #f9f7f7;
+}
+
+.hot-news-col-r-sm {
+  justify-self: end;
+  background-color: #f9f7f7;
+}
+
+.hot-news-main {
+  font: 600 14px 'Open Sans', AdobeInvisFont, Courier;
+  color: rgba(91, 100, 105, 255);
+  padding: 20px 27px 21px 22px;
+  text-align: right;
+}
+
+.hot-news-title {
+  font: 700 18px 'Open Sans', AdobeInvisFont, Courier;
+  color: rgba(53, 58, 61, 255);
+}
+
+.hot-news-title-single {
+  font: 700 18px 'Open Sans', AdobeInvisFont, Courier;
+  color: rgba(53, 58, 61, 255);
+  padding: 0;
+  text-align: center;
+  line-height: 46px;
+  vertical-align: middle;
+}
+
+.hot-news-text {
+  margin-top: 22px;
+}
+
+.hot-news-text-right {
+  width: calc(100% - 487px);
+  height: 259px;
+  display: inline-block;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+
+.footer {
+  height: 80px;
+  margin-top: 71px;
+  background-color: #1d2124;
+}
+
+.footer-block {
+  font: 400 13px 'Open Sans', AdobeInvisFont, OpenSans;
+  color: #fff;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  align-content: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.footer-icon {
+  justify-self: end;
+}
