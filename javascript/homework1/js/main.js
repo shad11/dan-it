@@ -11,7 +11,7 @@ while (!age) {
 
 if (age < 18) {
     alert('You are not allowed to visit this website!');
-} else if (age >= 18 && age <= 22) {
+} else if (age <= 22) {
     confirm('Are you sure you want to continue?')
         ? alert(`Welcome, ${name}`)
         : alert('You are not allowed to visit this website');
