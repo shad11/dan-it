@@ -5,10 +5,6 @@ html, body {
   margin: 0;
 }
 
-.container-main {
-  width: 1900px;
-}
-
 .container {
   width: 1168px;
   margin: 0 auto;
@@ -76,7 +72,7 @@ html, body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .header::before {
@@ -133,7 +129,7 @@ html, body {
 }
 
 .popular-posts-block {
-  height: 874px;
+  height: 860px;
   margin-top: 52px;
   display: flex;
   flex-wrap: wrap;
@@ -148,8 +144,11 @@ html, body {
 }
 
 .popular-post-title {
-  padding: 20px 0 22px;
-  text-align: center;
+  height: 61px;
+  display: flex;
+  margin-top: -5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .clients {
@@ -229,9 +228,14 @@ html, body {
 
 .latest-posts-block {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 271px);
+  grid-template-columns: repeat(7, 1fr);
   justify-content: center;
   grid-auto-flow: row;
+}
+
+.latest-posts-block img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .hot-news-header {
@@ -245,18 +249,17 @@ html, body {
 .hot-news-block {
   display: grid;
   grid-row-gap: 42px;
+  grid-column-gap: 35px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 259px auto auto 259px;
 }
 
 .hot-news-col-l {
-  width: 554px;
   grid-column: 1 / 3;
+  margin-right: 12px;
   background-color: #f9f7f7;
 }
 
 .hot-news-col-l-lg {
-  width: 856px;
   grid-column: 1 / 4;
   background-color: #f9f7f7;
 }
@@ -267,14 +270,13 @@ html, body {
 }
 
 .hot-news-col-r {
-  width: 554px;
   grid-column: 3 / 5;
+  margin-left: 12px;
   justify-self: end;
   background-color: #f9f7f7;
 }
 
 .hot-news-col-r-lg {
-  width: 856px;
   grid-column: 2 / 5;
   justify-self: end;
   background-color: #f9f7f7;
@@ -283,6 +285,11 @@ html, body {
 .hot-news-col-r-sm {
   justify-self: end;
   background-color: #f9f7f7;
+}
+
+.hot-news-col-l-lg img, .hot-news-col-r-lg img{
+  float: left;
+  padding-right: 21px;
 }
 
 .hot-news-main {
@@ -308,14 +315,6 @@ html, body {
 
 .hot-news-text {
   margin-top: 22px;
-}
-
-.hot-news-text-right {
-  width: calc(100% - 487px);
-  height: 259px;
-  display: inline-block;
-  overflow: scroll;
-  box-sizing: border-box;
 }
 
 .footer {
