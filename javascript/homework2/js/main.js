@@ -54,7 +54,7 @@ while (true) {
         break;
     }
 }
-
+/*
 let startNumber = m;
 
 while (startNumber <= n) {
@@ -71,4 +71,14 @@ while (startNumber <= n) {
     }
 
     startNumber++;
+}*/
+simpleNumber:
+for (let number = m; number <= n; number++) {
+    for (let i = 2; i < number; i++) {
+        if (number % i === 0) {
+            continue simpleNumber;
+        }
+    }
+
+    console.log(number);
 }
