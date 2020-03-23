@@ -56,7 +56,7 @@ function getOperation() {
         operation = (prompt('Enter an operation *|+|-|/|^') || '').trim();
     }
 
-    return operation
+    return operation;
 }
 
 function calc(num1, num2, operation) {
