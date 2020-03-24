@@ -37,16 +37,19 @@ while (firstAttempt || confirm('Repeat calculations?')) {
 }
 
 function getNumber(message) {
-    let num = prompt(message) || null;
+    let num = prompt(message);
 
     if (num === 'PREV_OP' && PREV_OP) {
         return PREV_OP;
     }
 
-    while (num == null || isNaN(+num)) {
+    while (!parseFloat(num)) {
         num = prompt(`Error, not number. ${message}`, num);
+        if (num === 'PREV_OP' && PREV_OP) {
+            return PREV_OP;
+        }
     }
-    return +num;
+    return parseFloat(num);
 }
 
 function getOperation() {
