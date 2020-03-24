@@ -30,6 +30,7 @@ while (true) {
         for (let i = 2; i < m; i++) {
             if (m % i === 0) {
                 errorFirst = true;
+                break;
             }
         }
     }
@@ -42,6 +43,7 @@ while (true) {
         for (let i = 2; i < n; i++) {
             if (n % i === 0) {
                 errorSecond = true;
+                break;
             }
         }
     }
