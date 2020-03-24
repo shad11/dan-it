@@ -16,34 +16,30 @@
 //     value += DIVIDER;
 // }
 
-let m = prompt('Enter the first simple integer number: ') || null;
-let n = prompt('Enter the second simple integer number: ') || null;
+let m = parseInt(prompt('Enter the first simple integer number: '));
+let n = parseInt(prompt('Enter the second simple integer number: '));
 let errorFirst = true;
 let errorSecond = true;
 
 while (true) {
-    if (m === null || !Number.isInteger(+m) || +m < 2) {
+    if (!m || m < 2) {
         errorFirst = true;
     } else if (errorFirst) {
         errorFirst = false;
-        m = +m;
         for (let i = 2; i < m; i++) {
             if (m % i === 0) {
                 errorFirst = true;
-                break;
             }
         }
     }
 
-    if (n === null || !Number.isInteger(+n) || +n < 2) {
+    if (!n || n < 2) {
         errorSecond = true;
     } else if (errorSecond) {
         errorSecond = false;
-        n = +n;
         for (let i = 2; i < n; i++) {
             if (n % i === 0) {
                 errorSecond = true;
-                break;
             }
         }
     }
