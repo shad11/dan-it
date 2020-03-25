@@ -3,16 +3,14 @@
 *   ПРОДВИНУТАЯ СЛОЖНОСТЬ - не выводить в консоль те из них, которые делятся на 5.
  */
 const countNum = 147;
-let number = 0;
-let cnt = 0;
+let count = 1;
+let number = 1;
 
-while (cnt < countNum) {
-    if (number % 2 === 0) {
-        cnt++;
-        if (number % 5 > 0) {
-            console.log(number);
-        }
+while (count <= countNum) {
+    if (number % 5 > 0) {
+        console.log(number);
     }
 
-    number++;
+    number += 2;
+    count++;
 }
