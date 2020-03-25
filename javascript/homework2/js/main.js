@@ -45,9 +45,9 @@ while (true) {
     }
 
     if (errorFirst) {
-        m = prompt('Entered number isn\'t corrected. Enter the first simple integer number: ', m);
+        m = parseInt(prompt('Entered number isn\'t corrected. Enter the first simple integer number: ', m));
     } else if (errorSecond) {
-        n = prompt('Entered number isn\'t corrected. Enter the second simple integer number: ', n);
+        n = parseInt(prompt('Entered number isn\'t corrected. Enter the second simple integer number: ', n));
     } else {
         break;
     }
