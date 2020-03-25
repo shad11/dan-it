@@ -39,13 +39,13 @@ while (firstAttempt || confirm('Repeat calculations?')) {
 function getNumber(message) {
     let num = prompt(message);
 
-    if (num === 'PREV_OP' && PREV_OP) {
+    if (num === 'PREV_OP' && parseFloat(PREV_OP)) {
         return PREV_OP;
     }
 
-    while (!parseFloat(num)) {
-        num = prompt(`Error, not number. ${message}`, num);
-        if (num === 'PREV_OP' && PREV_OP) {
+    while (!parseFloat(num) && parseFloat(num) !== 0) {
+        num = prompt(`Error, not number. ${message}`);
+        if (num === 'PREV_OP' && parseFloat(PREV_OP)) {
             return PREV_OP;
         }
     }
@@ -53,10 +53,14 @@ function getNumber(message) {
 }
 
 function getOperation() {
-    let operation = (prompt('Enter an operation *|+|-|/|^') || '').trim();
+    let operation = (prompt('Enter an operation *|+|-|/|^|root($)') || '').trim();
+    let isValid = operation === '*' || operation === '+' || operation === '-' ||
+        operation === '/' || operation === '^' || operation === '$';
 
-    while (operation !== '*' && operation !== '+' && operation !== '-' && operation !== '/' && operation !== '^') {
-        operation = (prompt('Enter an operation *|+|-|/|^') || '').trim();
+    while (!isValid) {
+        operation = (prompt('Enter an operation *|+|-|/|^|root($)') || '').trim();
+        isValid = operation === '*' || operation === '+' || operation === '-' ||
+            operation === '/' || operation === '^' || operation === '$';
     }
 
     return operation;
@@ -74,5 +78,10 @@ function calc(num1, num2, operation) {
             return num1 / num2;
         case '^':
             return Math.pow(num1, num2);
+        case '$':
+            if (num1 < 0 && num2 % 2 === 1)
+                return -Math.pow(-num1, 1/num2);
+            else
+                return Math.pow(num1, 1/num2);
     }
 }
