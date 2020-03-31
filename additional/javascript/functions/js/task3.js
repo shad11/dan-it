@@ -3,25 +3,25 @@
 Функция должна валидировать то что ввел пользователь в prompt (доступно только от 0 до 255 включительно)
  */
 const isValidColor = function(number) {
-  return number >= 0 && number < 256;
+  return number >= 0 && number <= 255;
 };
 
 const getValue = function(message) {
-    let num = (prompt(`${message}`) || '').trim();
+    let num;
 
-    while (num === '' || !Number.isInteger(+num) || !isValidColor(+num)) {
+    do {
         num = (prompt(`${message}`) || '').trim();
-    }
+    } while (num === '' || !Number.isInteger(+num) || !isValidColor(+num));
 
     return +num;
 };
 
-const rgb = function(red = 0, green = 0, blue = 0) {
+const rgb = function() {
+    let red = getValue('Enter red number color:');
+    let green = getValue('Enter green number color:');
+    let blue = getValue('Enter blue number color:');
+
     return `rgb(${red}, ${green}, ${blue})`;
 };
 
-let red = getValue('Enter red number color:');
-let green = getValue('Enter green number color:');
-let blue = getValue('Enter blue number color:');
-
-alert(rgb(red, green, blue));
+alert(rgb());

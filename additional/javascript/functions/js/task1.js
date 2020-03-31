@@ -7,11 +7,11 @@
  */
 
 const getNumber = function(message) {
-    let num = (prompt(`${message}`) || '').trim();
+    let num;
 
-    while (num === '' || !Number.isInteger(+num)) {
+    do  {
         num = (prompt(`${message}`) || '').trim();
-    }
+    } while (num === '' || !Number.isInteger(+num));
 
     return +num;
 };
@@ -40,13 +40,8 @@ let step = getStep();
 showNumbers(num1, num2, step);
 
 function showNumbers(num1 = 0, num2 = 10, step = 1) {
-    let from = num1;
-    let to = num2;
-
-    if (num1 > num2) {
-        from = num2;
-        to = num1;
-    }
+    let from = Math.min(num1, num2);
+    let to = Math.max(num1, num2);
 
     if (step === 0) {
         console.log(from, to);

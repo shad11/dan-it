@@ -12,6 +12,11 @@ const calcString = function(num = 3, str = 'hello') {
         res += str;
     }
 
+    // while (num > 0) {
+    //     res += str;
+    //     num--;
+    // }
+
     return res;
 };
 
