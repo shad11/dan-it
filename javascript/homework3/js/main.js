@@ -2,42 +2,44 @@ const isNumber = function (num) {
     return !(num === '' || isNaN(num));
 };
 
-const isValidOperation = function(operation) {
-    return operation === '+' || operation === '-' || operation === '*' || operation === '/';
+const isValidOperation = function(mathOperation) {
+    return mathOperation === '+'
+        || mathOperation === '-'
+        || mathOperation === '*'
+        || mathOperation === '/';
 };
 
-const add = function (num1, num2) {
-    return num1 + num2;
+const add = function (a, b) {
+    return a + b;
 };
 
-const minus = function (num1, num2) {
-    return num1 - num2;
+const minus = function (a, b) {
+    return a - b;
 };
 
-const multiple = function (num1, num2) {
-    return num1 * num2;
+const multiple = function (a, b) {
+    return a * b;
 };
 
-const divide = function (num1, num2) {
-    return num1 / num2;
+const divide = function (a, b) {
+    return a / b;
 };
 
-const execOperation = function(num1, num2, operation) {
-  return operation(num1, num2);
+const execOperation = function(a, b, operationCallback) {
+  return operationCallback(a, b);
 };
 
-let num1;
-let num2;
-let result;
+let firstNumber;
+let secondNumber;
 let operation;
 
 do {
-    num1 = prompt('Enter the first number: ', num1 || '') || '';
-    num2 = prompt('Enter the second number: ', num2 || '') || '';
-} while (!isNumber(num1) || !isNumber(num2));
+    firstNumber = prompt('Enter the first number: ', firstNumber || '') || '';
+    secondNumber = prompt('Enter the second number: ', secondNumber || '') || '';
+} while (!isNumber(firstNumber) || !isNumber(secondNumber));
 
-num1 = +num1;
-num2 = +num2;
+firstNumber = +firstNumber;
+secondNumber = +secondNumber;
 
 do {
     operation = prompt('Enter an operation +|-|*|/: ') || '';
@@ -45,17 +47,15 @@ do {
 
 switch (operation) {
     case '+':
-        result = execOperation(num1, num2, add);
+        console.log(execOperation(firstNumber, secondNumber, add));
         break;
     case '-':
-        result = execOperation(num1, num2, minus);
+        console.log(execOperation(firstNumber, secondNumber, minus));
         break;
     case '*':
-        result = execOperation(num1, num2, multiple);
+        console.log(execOperation(firstNumber, secondNumber, multiple));
         break;
     case '/':
-        result = execOperation(num1, num2, divide);
+        console.log(execOperation(firstNumber, secondNumber, divide));
         break;
 }
-
-console.log(`${num1} ${operation} ${num2} = ${result}`);
