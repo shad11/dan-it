@@ -47,8 +47,8 @@ const getOrder = function(orderSize, orderType) {
         };
     }
 
-    let totalPrice = priceList.sizes[orderSize].price + priceList.types[orderType].price;
-    let totalCalories = priceList.sizes[orderSize].calories + priceList.types[orderType].calories;
+    const totalPrice = priceList.sizes[orderSize].price + priceList.types[orderType].price;
+    const totalCalories = priceList.sizes[orderSize].calories + priceList.types[orderType].calories;
 
     return {
         totalPrice,

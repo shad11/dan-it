@@ -26,8 +26,13 @@ const createUser = function(name, surname, age, sex, profession = null) {
         return;
     }
 
-    if (!isNaN(name) || !isNaN(surname)) {
-        alert('Name|surname isn\'t correct!');
+    if (!isNaN(name)) {
+        alert('Name isn\'t correct!');
+        return;
+    }
+
+    if (!isNaN(surname)) {
+        alert('Surname isn\'t correct!');
         return;
     }
 
@@ -45,7 +50,7 @@ const createUser = function(name, surname, age, sex, profession = null) {
                 if (typeof this[key] === 'function') {
                     continue;
                 }
-                console.log(key + ': ' + this[key]);
+                console.log(`${key}: ${this[key]}`);
             }
         }
     }
