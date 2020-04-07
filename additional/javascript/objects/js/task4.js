@@ -34,23 +34,23 @@ const createProduct = function(params) {
             }
         },
         getProp(prop) {
-            if (/*this[prop.toLowerCase()] === undefined*/!this.existProperty(prop)) {
-                return this.throwError('No such property in object');
+            if (/*this[prop.toLowerCase()] === undefined*/!existProperty(prop)) {
+                return throwError('No such property in object');
             }
 
             if (this.status === 'inactive') {
-                return this.throwError('Inactive status, can\'t get property!');
+                return throwError('Inactive status, can\'t get property!');
             }
 
             return this[prop.toLowerCase()];
         },
         setProp(prop, value, pass) {
-            if (!this.isValidPass(pass)) {
-                return this.throwError('Pass isn\'t correct');
+            if (!isValidPass(pass)) {
+                return throwError('Pass isn\'t correct');
             }
 
-            if (this.existProperty(prop)) {
-                return this.throwError('Such property already exists!');
+            if (existProperty(prop)) {
+                return throwError('Such property already exists!');
             }
 
             if (prop.toLowerCase() === 'count') {
@@ -60,12 +60,12 @@ const createProduct = function(params) {
             this[prop.toLowerCase()] = value;
         },
         changeProp(prop, value, pass) {
-            if (!this.isValidPass(pass)) {
-                return this.throwError('Pass isn\'t correct');
+            if (!isValidPass(pass)) {
+                return throwError('Pass isn\'t correct');
             }
 
-            if (!this.existProperty(prop)) {
-                return this.throwError('No such property!');
+            if (!existProperty(prop)) {
+                return throwError('No such property!');
             }
 
             if (prop.toLowerCase() === 'count') {
@@ -75,27 +75,15 @@ const createProduct = function(params) {
             this[prop.toLowerCase()] = value;
         },
         deleteProp(prop, pass) {
-            if (!this.isValidPass(pass)) {
-                return this.throwError('Pass isn\'t correct');
+            if (!isValidPass(pass)) {
+                return throwError('Pass isn\'t correct');
             }
 
-            if (!this.existProperty(prop)) {
-                return this.throwError('No such property!');
+            if (!existProperty(prop)) {
+                return throwError('No such property!');
             }
 
             delete this[prop.toLowerCase()];
-        },
-        isValidPass(pass) {
-            return this.pass === pass;
-        },
-        existProperty(prop) {
-            return prop.toLowerCase() in this;
-        },
-        throwError(msg) {
-            return {
-                error: true,
-                message: msg,
-            }
         },
         checkCount(newValue) {
             if (newValue === 0) {
@@ -104,6 +92,21 @@ const createProduct = function(params) {
             }
         },
     };
+
+    function isValidPass(pass) {
+        return newProduct.pass === pass;
+    }
+
+    function existProperty(prop) {
+        return prop.toLowerCase() in newProduct;
+    }
+
+    function throwError(msg) {
+        return {
+            error: true,
+            message: msg,
+        }
+    }
 
     return newProduct;
 };
