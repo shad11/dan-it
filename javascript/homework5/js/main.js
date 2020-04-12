@@ -1,10 +1,31 @@
-const createNewUser = function () {
+const isString = function(str) {
+    return isNaN(str);
+};
+
+const isValidDateStr = function(str) {
+    const reg = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d/;
+    return reg.test(str);
+};
+
+const getDateFromStr = function(str) {
+    const newStr = str.split('.').reverse().join('-');
+    return new Date(newStr);
+};
+
+const createNewUser = function() {
     const firstName = prompt('Enter first name: ');
     const lastName = prompt('Enter last name: ');
+
+    let birthDateStr;
+    do {
+        birthDateStr = prompt('Enter your date of birth (dd.mm.yyyy): ');
+    } while (!isValidDateStr(birthDateStr));
+
 
     const newUser = {
         firstName,
         lastName,
+        birthDate: getDateFromStr(birthDateStr),
         getLogin() {
             return this.firstName.toLowerCase().charAt(0) + this.lastName.toLowerCase();
         },
@@ -17,6 +38,12 @@ const createNewUser = function () {
             Object.defineProperty(this, 'lastName', {
                 value: newLastName,
             });
+        },
+        getAge() {
+            return (new Date()).getFullYear() - this.birthDate.getFullYear();
+        },
+        getPassword() {
+            return this.firstName.charAt(0).toUpperCase() + this.lastName.toLowerCase() + this.birthDate.getFullYear();
         },
     };
 
@@ -33,10 +60,6 @@ const createNewUser = function () {
 };
 
 const user = createNewUser();
-user.firstName = 'BBBB';
-console.log(user.getLogin());
-
-user.setFirstName('Hanna');
-user.setLastName('Sachok');
-console.log(user.getLogin());
 console.log(user);
+console.log(user.getAge());
+console.log(user.getPassword());
