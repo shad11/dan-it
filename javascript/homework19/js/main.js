@@ -11,7 +11,6 @@ const checkReadyTasks = function(employeesArr, tasksArr, dateEnd) {
         if ([0, 6].indexOf(currDate.getDay()) > -1 ) {
             continue;
         }
-        console.log(currDate);
 
         if (sumWorkPoints < taskPoints) {
             sumWorkPoints += teamPoints;
