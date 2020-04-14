@@ -52,16 +52,17 @@ console.log(getLastDayOfMonth('19/04/2020'));
  а также функция getDaysToHB - которая отображает сколько осталось дней до дня рождения человека
  */
 const getUserBirth = function() {
-    const enterDate = new Date();
+    const currDate = new Date();
     const name = prompt('Enter name: ');
     let dateStr;
     let birthDate;
-    let age;
 
     do {
         dateStr = prompt('Enter your birthday (dd/mm/yyyy): ');
         birthDate = prepareDate(dateStr);
-        age = enterDate.getFullYear() - birthDate.getFullYear()
+        age = currDate.getTime() < (new Date(currDate.getFullYear(), birthDate.getMonth(), birthDate.getDate())).getTime()
+            ? currDate.getFullYear() - birthDate.getFullYear() - 1
+            : currDate.getFullYear() - birthDate.getFullYear();
     } while (age >= 120);
 
     return {
@@ -72,11 +73,8 @@ const getUserBirth = function() {
             const currDate = new Date();
             const newDate = new Date(currDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
 
-            if ((currDate.getMonth() < newDate.getMonth())
-                || (currDate.getMonth() === newDate.getMonth() && currDate.getDate() > newDate.getDate())
-            ) {
+            if (currDate.getTime() > newDate.getTime()) {
                 newDate.setFullYear(newDate.getFullYear() + 1);
-
             }
 
             return Math.ceil((newDate.getTime() - currDate.getTime()) / (1000 * 3600 * 24));
