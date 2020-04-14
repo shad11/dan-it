@@ -40,7 +40,11 @@ const createNewUser = function() {
             });
         },
         getAge() {
-            return (new Date()).getFullYear() - this.birthDate.getFullYear();
+            const currDate = new Date();
+
+            return currDate.getTime() < (new Date(currDate.getFullYear(), this.birthDate.getMonth(), this.birthDate.getDate())).getTime()
+                ? currDate.getFullYear() - this.birthDate.getFullYear() - 1
+                : currDate.getFullYear() - this.birthDate.getFullYear()
         },
         getPassword() {
             return this.firstName.charAt(0).toUpperCase() + this.lastName.toLowerCase() + this.birthDate.getFullYear();
