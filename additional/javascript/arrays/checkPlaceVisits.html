@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paces Visits</title>
+</head>
+<body>
+
+<script>
+    //4. Напишите функцию, которая будет вычислять процентное соотношение посещений заведения на протяжении определенного периода
+    // Функция принимает id того места, которое нужно измерить (category_id), дату начала сравнения (date_from) и дату конца (date_to) не включительно (в формате ГГГГ-ММ-ДД)
+    // После этого функция должна вернуть объект со следующими полями:
+    // - category_id
+    // - category_name
+    // - start_data
+    // - array_of_percentage_days
+    // array_of_percentage_days - должен быть массивом, длинна которого должна равняться количеству дней в промежутке от входящих параметров (date_from и date_to)
+    // каждое значение в данном массиве - процентное соотношение посещений данного заведения по данному периоду
+    // пример - function(2, '2019-02-02', '2019-02-04') => должен вернуть
+    //  {
+    //   category_id: 2
+    //   category_name: 'SomeName',
+    //   start_data: '2019-02-02',
+    //   array_of_percentage_days: [45, 55] // так как всего два дня в текущем промежутке
+    //  }
+
+    const records = [
+        {
+            category_id: 1,
+            category_FCV: 20,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Tue, 14 Jan 2020 10:00 GMT',
+        },
+        {
+            category_id: 1,
+            category_FCV: 10,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Tue, 14 Jan 2020 10:20 GMT',
+        },
+        {
+            category_id: 1,
+            category_FCV: 10,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Fri, 17 Jan 2020 10:00 GMT',
+        },
+        {
+            category_id: 1,
+            category_FCV: 20,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Sun, 12 Jan 2020 10:00 GMT',
+        },
+        {
+            category_id: 1,
+            category_FCV: 40,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Mon, 13 Jan 2020 10:00 GMT',
+        },
+        {
+            category_id: 2,
+            category_FCV: 20,
+            category_name: 'McDonald\'s',
+            category_timeslot: 'Sat, 11 Jan 2020 10:00 GMT',
+        },
+    ];
+
+    const createDateFromStr = function(str) {
+        const dateTmp = new Date(str);
+        return new Date(dateTmp.getFullYear(), dateTmp.getMonth(), dateTmp.getDate());
+    };
+
+    const convertDateToStr = function(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() < 9
+            ? '0' + (date.getMonth() + 1)
+            : date.getMonth() + 1;
+        const day = date.getDate() < 10
+            ? '0' + date.getDate()
+            : date.getDate();
+
+        return `${year}-${month}-${day}`;
+    };
+
+    const roundPercentage = function(percentArr) {
+        const percentArrNew = [...percentArr];
+        const roundedArr = percentArrNew.map(elem => Math.round(elem));
+        const totalPercent = roundedArr.reduce((prev, curr) => prev + curr, 0);
+
+        if (totalPercent === 0) {
+            return percentArrNew;
+        }
+
+        const diff = 100 - totalPercent;
+
+        const percentArrSorted = [...percentArrNew].sort(
+            (curr, next) => (next - Math.floor(next)) - (curr - Math.floor(curr))
+        );
+
+        return percentArrNew
+            .map((elem) => {
+                return percentArrSorted.indexOf(elem) < diff ? Math.floor(elem) + 1 : Math.floor(elem);
+            });
+    };
+
+    const getPlaceVisits = function(placeId, dateFromStr, dateToStr) {
+        const dateFrom = createDateFromStr(dateFromStr);
+        const dateTo = createDateFromStr(dateToStr);
+        const placeName = (records.find(elem => elem.category_id === placeId) || {category_name: ''}).category_name;
+        let fcvTotal = 0;
+
+        const recordsNew = records
+            .filter(item => {
+                const date = createDateFromStr(item.category_timeslot);
+                return item.category_id === placeId
+                    && date >= dateFrom
+                    && date< dateTo
+            })
+            .reduce((prev, curr) => {
+                const item = prev.find(item => item.date.getTime() === createDateFromStr(curr.category_timeslot).getTime());
+                fcvTotal += curr.category_FCV;
+
+                if (item === undefined) {
+                    return [...prev, {
+                        fcv: curr.category_FCV,
+                        date: createDateFromStr(curr.category_timeslot),
+                    }];
+                } else {
+                    item.fcv += curr.category_FCV;
+                    return [...prev];
+                }
+            }, []);
+
+        let date = new Date(dateFrom);
+        let percentageDays = [];
+
+        while(date < dateTo) {
+            const record = recordsNew.find(item => item.date.getTime() === date.getTime());
+            if (record) {
+                percentageDays = [...percentageDays, record.fcv/fcvTotal * 100];
+            } else {
+                percentageDays = [...percentageDays, 0];
+            }
+            date.setDate(date.getDate() + 1);
+        }
+
+        return {
+            category_id: placeId,
+            category_name: placeName,
+            start_data: convertDateToStr(dateFrom),
+            array_of_percentage_days: roundPercentage(percentageDays),
+        }
+    };
+
+    console.log(getPlaceVisits(1, '2020-01-11', '2020-01-17'));
+
+</script>
+
+</body>
+</html>
