@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * Задание 2.
+     *
+     * Написать функцию, которая возвращает наибольшее число, из переданных ей в качестве аргументов при вызове.
+     *
+     * Генерировать ошибку, если:
+     * - Если функция была вызвана менее, чем с двумя аргументами;
+     * - Хоть один из аргументов не является допустимым числом (в ошибке указать его порядковый номер).
+     *
+     * Условия:
+     * - Использовать тип функции arrow function;
+     * - Использовать объект arguments запрещено;
+     * - Обязательно использовать объект Math.
+     */
+    const getMax = (...numbers) => {
+        if (numbers < 2) {
+            console.error('Number of arguments is not enough!');
+            return;
+        }
+
+        const errorIndex = numbers.findIndex(elem => typeof elem !== 'number' || isNaN(elem));
+
+        if (errorIndex !== -1) {
+            console.error(`Element with index ${errorIndex} isn't number`);
+            return;
+        }
+
+        return Math.max(...numbers);
+    };
+
+    console.log(getMax(1));
+    console.log(getMax(1, 4, -3, 'dfsdf'));
+    console.log(getMax(1, 3, 11, -4, 0));
+
+    /**
+     * Задание 3.
+     *
+     * Написать функцию-логгер log, которая выводит в консоль сообщение указанное количество раз.
+     *
+     * Функция обладает двумя параметрами:
+     * - Первый — строковый тип, сообщение для вывода;
+     * - Второй — числовой тип, количество выводов сообщения.
+     *
+     * Если первый аргумент(сообщение) не передан - ПО УМОЛЧАНИЮ присвоить этому аргументу - "Empty message"
+     * Если второй аргумент(количество раз) не передан - ПО УМОЛЧАНИЮ присвоить этому аргументу значение 1.
+     */
+    const log = (message = 'Empty message', count = 1) => {
+        for (let i = 0; i < count; i++)
+            console.log(message);
+    };
+
+    log();
+    log('Test', 3);
+
+    /**
+     * Задание 4.
+     *
+     * Написать калькулятор на функциях.
+     *
+     * Программа должна выполнять четыре математические операции:
+     * - Сложение (add);
+     * - Вычитание (subtract);
+     * - Умножение (multiply);
+     * - Деление (divide).
+     *
+     * Каждую математическую операцию должна выполнять отдельная функция.
+     * Каждая такая функция обладает двумя параметрами-операндами,
+     * и возвращает результат нужной операции над ними.
+     *
+     * Эти вспомогательный функции использует главная функция calculate,
+     * которая обладает тремя параметрами:
+     * - Первый — числовой тип, первый операнд;
+     * - Второй — числовой тип, второй операнд;
+     * - Третий — функцию, ссылка на ранее созданную вспомогательную функцию.
+     *
+     * Условия:
+     * - Никаких проверок типов данных совершать не нужно;
+     * - Обязательно использовать паттерн «callback».
+     */
+
+    const add = (numFirst, numSecond) => numFirst + numSecond;
+    const subtract = (numFirst, numSecond) => numFirst - numSecond;
+    const multiply = (numFirst, numSecond) => numFirst * numSecond;
+    const divide = (numFirst, numSecond) => numFirst / numSecond;
+
+    const calculate = (numFirst, numSecond, operation) => operation(numFirst, numSecond);
+
+    console.log(calculate(1, 4, multiply));
+
+    /**
+     * Задание 4.1
+     *
+     * const realNumberArray = [4, 5.6, 3, -9.8, 3.14, 42, 6, 8.34, -2];
+     *
+     * напишите функцию, которая принимает массив элементов и возвращает число
+     * первый аргумент в функции - должен быть массивом, второй - степень
+     * функция должна фильтровать элементы отбирая только положительные
+     * функция должна фильтровать элементы отбирая только целые
+     * функция должна найти полученные элементы и возвести каждый из них в степень (которая была передана вторым аргументом)
+     * функция должна вернуть сумму элементов (отфильтрованных и преобразованных)
+     */
+
+    const sumArrayPow = (array, pow) => {
+        return array
+            .filter(elem => elem > 0 && Number.isInteger(elem))
+            .map(elem => Math.pow(elem, pow))
+            .reduce((prev, curr) => prev + curr, 0)
+    };
+
+    console.log(sumArrayPow([0, 1, 1.3, -4.5, -3, 2, 0], 3));
+
+    /**
+     * Задание 4.4
+     *
+     * напишите функцию-фабрику, которая должна вернуть объект пользователя с параметрами (name, age, yearOfBirth, sex, sName, country, city, address);
+     * по умолчанию эти данные должны быть заданы как дефолтные (любые параметры на ваш выбор)
+     * функция может принимать только один параметр - объект - который может содержать любые из вышеперечисленных параметров и менять содержимое объекта
+     * пример => someFunction() должна вернуть объект с параметрами (name, age, yearOfBirth, sex, sName, country, city, address); - по умолчанию
+     * пример => someFunction({name: 'Ivan', age: 22}) должна вернуть объект с параметрами (yearOfBirth, sex, sName, country, city, address); - по умолчанию
+     * и параметрами (name, age) - которые были заданы при передаче
+     */
+
+    const createUser = (userData) => {
+        const defaultUser = {
+            name: 'NoName',
+            age: 31,
+            yearOfBirth: 1988,
+            sex: 'male',
+            sName: 'NoSurname',
+            country: 'Ukraine',
+            city: 'Kyiv',
+            address: 'Kyiv',
+        };
+
+        return {...defaultUser, ...userData};
+    };
+
+    console.log(createUser({name: 'Hanna', postCode: '01001'}));
+
+    /**
+     * Fix action methods work properly for "fruitShop object" - all able variants
+     */
+    const fruitShop = {
+        adminCode: 222,
+        items: {
+            banana: 5,
+            orange: 1,
+            apple: 2,
+        },
+        actions: {
+            logFruits() {
+                console.log(fruitShop.items);
+            },
+            logFruits2() {
+                console.log(this.items);
+            },
+        },
+    };
+
+    fruitShop.actions.logFruits();
+    fruitShop.actions.logFruits2.call(fruitShop);
+
+</script>
+
+</body>
+</html>
