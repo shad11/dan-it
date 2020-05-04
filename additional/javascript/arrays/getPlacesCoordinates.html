@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+    //преобразовать полученное значение в массив объектов где каждый объект имеет свойтсва
+    //координаты - объект (latitude longitude)
+    //центр - объект координат
+    //название места
+    //положение - объект со значениями - адрес и категория
+    //отсортировать данные по параметру longitude ( в объекте коориднат )
+    //вывести данный массив в консоль
+    //использовать map/reduce/sort
+    const apiGeoToken = 'pk.eyJ1Ijoic2VyZ2lpcGF0b2toYSIsImEiOiJjazk0OHI1ZnUwMmxyM2hvYnh3c2o3MW0wIn0.ilbTzTis5UCw-HGlKsnQlg';
+    const geoURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+    const address = 'Kyiv';
+    (async() => {
+        const response = await fetch(`${geoURL}${address}.json?access_token=${apiGeoToken}&limit=20`);
+        const data = await response.json();
+        // Your code here
+        const results = data.features
+            .map(elem => ({
+                coordinates: {
+                    latitude: elem.geometry.coordinates[0],
+                    longitude: elem.geometry.coordinates[1],
+                },
+                center: {
+                    latitude: elem.center[0],
+                    longitude: elem.center[1],
+                },
+                name: elem.place_name,
+                location: {
+                    address: elem.properties.address || '',
+                    category: elem.properties.category || '',
+                },
+            }))
+            .sort((curr, next) => curr.coordinates.longitude - next.coordinates.longitude);
+
+        console.log(results);
+        // Your code here
+    })();
+</script>
+
+</body>
+</html>
