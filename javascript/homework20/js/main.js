@@ -1,6 +1,7 @@
 const isWordInElem = function(word, elem) {
     if (typeof elem === 'string') {
-        return elem.includes(word);
+        const elemWords = elem.toLowerCase().replace(/[.,!?;:()"]/g,' ').split(' ');
+        return elemWords.includes(word);
     } else if (typeof elem === 'object') {
         return Object.values(elem).reduce((prev, curr) => prev || isWordInElem(word, curr), false);
     }
@@ -33,23 +34,23 @@ const isWordInFields = function(word, elem, fields) {
     return false;
 };
 
-const existInElem = function(elem, wordsArr, checkAll = false, fields) {
-    if (fields.length > 0) {
+const existInElem = function(elem, wordsArr, checkAll, fields) {
+    // if (fields.length > 0) {
         if (checkAll) {
-            return wordsArr.every(word => isWordInFields(word, elem, fields));
+            return wordsArr.every(word => isWordInFields(word.toLowerCase(), elem, fields));
         }
 
-        return wordsArr.some(word => isWordInFields(word, elem, fields));
-    }
+        return wordsArr.some(word => isWordInFields(word.toLowerCase(), elem, fields));
+    // }
 
-    if (checkAll) {
-        return wordsArr.every(word => isWordInElem(word, elem));
-    }
+    // if (checkAll) {
+    //     return wordsArr.every(word => isWordInElem(word, elem));
+    // }
 
-    return wordsArr.some(word => isWordInElem(word, elem));
+    // return wordsArr.some(word => isWordInElem(word, elem));
 };
 
-const filterCollection = function(array, keyWords, checkAll = false, ...fields) {
+const filterCollection = function(array, keyWords, checkAll, ...fields) {
     const keyWordsArr = keyWords.split(' ');
 
     return array.filter(elem => existInElem(elem, keyWordsArr, checkAll, fields));
@@ -59,6 +60,9 @@ const items = [
     'test',
     123,
     'test12',
+    {
+        name: 'bla, test3',
+    },
     {
         name: 'test test3',
     },
@@ -73,4 +77,4 @@ const items = [
     },
 ];
 
-console.log(filterCollection(items, 'test 1', false, 'name', 'contentType.name'));
+console.log(filterCollection(items, 'test bla', false, 'name', 'contentType.name'));
