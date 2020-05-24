@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moving Block</title>
+  <style>
+    .block {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background: #89ca62;
+    }
+
+    .moving {
+      position: fixed;
+      top: 0;
+      right: 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="block"></div>
+
+<div class="moving">
+  <div><button id="topBtn">Top</button></div>
+  <div><button id="leftBtn">Left</button> <button id="rightBtn">Right</button></div>
+  <div><button id="downBtn">Down</button></div>
+</div>
+
+<script>
+  // Задание HOME. все сделать на странице через JS
+  // На странице есть блок и 4 кнопки (вверх, вниз, влево, вправо) при нажатии на которые мышкой блок передвигается на странице на определенное количесвто пикселей 20
+  // PS сделать поле ввода на странице, где пользователь сможет вводить количество пкселей для изменения
+  const OFFSET_DEFAULT = 20;
+  const blockEl = document.querySelector('.block');
+  let offset;
+
+  const addListener = (element, event, handler, options = {}) => {
+      element.addEventListener(event, handler, options);
+  };
+
+  const moveBlock = (direction) => {
+      return () => {
+          const offsetEl = (!isNaN(offset) ? offset : OFFSET_DEFAULT) * (['top', 'left'].includes(direction) ? -1 : 1);
+
+          if (['top', 'down'].includes(direction)) {
+              blockEl.style.top = `${blockEl.getBoundingClientRect().y + offsetEl}px`;
+          }
+      }
+  };
+
+  addListener(document.querySelector('#downBtn'), 'click', moveBlock('down'));
+
+  /*document.querySelector('#downBtn').addEventListener('click', (event) => {
+      console.log(blockEl.getBoundingClientRect());
+      blockEl.style.top = `${blockEl.getBoundingClientRect().y + OFFSET_DEFAULT}px`;
+  });*/
+</script>
+
+</body>
+</html>

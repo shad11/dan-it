@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find And Scroll Element</title>
+</head>
+<body>
+
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+<h2>Header 2</h2>
+<hr>
+<a href="https://learn.javascript.ru/" target="_blank">Современный учебник JavaScript</a>
+<hr>
+<h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+<h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1> <h1>Header 1</h1>
+
+<script>
+  // написать функцию, в которую пользователь сможет записывать элемент (класс, id, аттрибут)
+  // функция будет находить первый попавшийся элемент на странице и скроллить сраницу к нему
+  // также функция должна получать вторым параметром расположение скроллинга (top, bottom) для элемента
+
+  const scrollElement = (selector, positionScroll) => {
+      const element = document.querySelector(selector);
+      const scrollBehavior = {
+          behavior: 'smooth',
+          block: positionScroll === 'top' ? 'start' : 'end',
+      };
+
+      if (element) {
+          element.scrollIntoView(scrollBehavior);
+      }
+  };
+
+  scrollElement('hr', 'top');
+
+</script>
+
+</body>
+</html>
