@@ -3,19 +3,19 @@ const CLEAR_TIMEOUT = 10000;
 // creating LI element if string, or UL if object/array
 const createTemplate = (element) => {
     if (Array.isArray(element)) {
-        return `<ul>
+        return `<li><ul>
         ${ element
             .map(elem => createTemplate(elem))
             .join('') 
         }
-        </ul>`;
+        </ul></li>`;
     } else if (typeof element === 'object') {
-        return `<ul>
+        return `<li><ul>
         ${ Object.values(element)
             .map(elem => createTemplate(elem))
             .join('') 
         }
-        </ul>`;
+        </ul></li>`;
     } else {
         return `<li>${element}</li>`;
     }
@@ -25,10 +25,9 @@ const createTemplate = (element) => {
 const outputArray = (array) => {
     const elementUL = document.createElement('ul');
 
-    array.map(element => {
-        elementUL.insertAdjacentHTML('beforeend', createTemplate(element));
-    });
+    const listHTML = array.map(element => createTemplate(element)).join('');
 
+    elementUL.insertAdjacentHTML('beforeend', listHTML);
     document.querySelector('.list-block').append(elementUL);
 };
 
@@ -48,7 +47,7 @@ const clearDocument = () => {
         clearInterval(timer);
     }, CLEAR_TIMEOUT);
 };
-
+/*
 const examples = [
     ['hello', 'world', 'Kiev', 'Kharkiv', 'Odessa', 'Lviv'],
     ['hello', 'world', 'Kiev', 'Kharkiv', 'Lviv', ['1', '2', '3', 'sea', 'user', 23], 'Odessa', {'name': 'Hanna', 'surname': 'Sachok'}],
@@ -61,3 +60,7 @@ examples.forEach((elem, index) => {
         clearDocument();
     }, index * (CLEAR_TIMEOUT + 10));
 });
+*/
+const listArray = ['hello', 'world', 'Kiev', 'Kharkiv', 'Lviv', ['1', '2', '3', 'sea', 'user', 23], 'Odessa', {'name': 'Hanna', 'surname': 'Sachok'}];
+outputArray(listArray);
+clearDocument();
