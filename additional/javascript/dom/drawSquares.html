@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draw Squares</title>
+</head>
+<body>
+
+<script>
+    /**
+     * Задание 5.
+     *
+     * Написать функцию-фабрику квадратов createSquares.
+     *
+     * Функция обладает двумя параметром — количеством квадратов для создания.
+     *
+     * Если пользователь ввёл количество квадратов для создания в недопустимом формате —
+     * запрашивать данные повторно до тех пор, пока данные не будут введены корректно.
+     *
+     * Максимальное количество квадратов для создания — 10.
+     * Если пользователь решил создать более 10-ти квадратов — сообщить ему о невозможности такой операции
+     * и запрашивать данные о количестве квадратов для создания до тех пор, пока они не будут введены корректно.
+     *
+     * Размер каждого квадрата в пикселях нужно получить интерактивно посредством диалогового окна prompt.
+     *
+     * Если пользователь ввёл размер квадрата в недопустимом формате —
+     * запрашивать данные повторно до тех пор, пока данные не будут введены корректно.
+     *
+     * Цвет каждого квадрата необходимо запросить после введения размера квадрата в корректном виде.
+     *
+     * Итого последовательность ввода данных о квадратах выглядит следующим образом:
+     * - Размер квадрата n;
+     * - Цвет квадрата n;
+     * - Размер квадрата n + 1;
+     * - Цвет квадрата n + 1.
+     * - Размер квадрата n + 2;
+     * - Цвет квадрата n + 3;
+     * - и так далее...
+     *
+     * Если не любом этапе сбора данных о квадратах пользователь кликнул по кнопке «Отмена»,
+     * необходимо остановить процесс создания квадратов и вывести в консоль сообщение:
+     * «Операция прервана пользователем.».
+     *
+     * Все стили для каждого квадрата задать через JavaScript за раз.
+     *
+     * Тип элемента, описывающего каждый квадрат — div.
+     * Задать ново-созданным элементам CSS-классы: .square-1, .square-2, .square-3 и так далее.
+     *
+     * Все квадраты необходимо сделать потомками body документа.
+     */
+
+    const getSquaresCount = () => {
+        let count;
+
+        do {
+            count = parseInt(prompt('Enter squares count: '));
+
+            if (count > 10) {
+                alert('You can\'t draw more than 10 squares!!!');
+                count = 0;
+            }
+        } while (!count || count < 1);
+
+        return count;
+    };
+
+    const createSquare = (id) => {
+        let size;
+        let color;
+
+        do {
+            size = prompt(`Enter ${id} square size: `);
+
+            if (size === null) {
+                return null;
+            }
+        } while (!+size || +size < 1);
+
+        do {
+            color = prompt('Enter color: ');
+        } while (color.length === 0);
+
+        let square = document.createElement('div');
+
+        square.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          background-color: ${color};
+        `;
+        square.classList.add(`square-${id}`);
+
+        return square;
+    };
+
+    const initSquares = (count) => {
+        const fragment = new DocumentFragment();
+
+        for (let i = 0; i < count; i++) {
+            const square = createSquare(i + 1);
+
+            if (square === null) {
+                return null;
+            }
+
+            fragment.append(square);
+        }
+
+        return fragment;
+    };
+
+    const drawSquares = () => {
+        const squaresCount = getSquaresCount();
+        const squaresEL = initSquares(squaresCount);
+
+        if (squaresEL) {
+            document.body.append(squaresEL);
+        } else {
+            console.log('Операция прервана пользователем');
+        }
+    };
+
+    drawSquares();
+
+</script>
+
+</body>
+</html>
