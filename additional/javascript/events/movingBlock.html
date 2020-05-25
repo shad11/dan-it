@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moving Block</title>
+  <style>
+    .block {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background: #89ca62;
+    }
+
+    .moving {
+      position: fixed;
+      top: 0;
+      right: 0;
+      text-align: center;
+    }
+
+    input {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="block"></div>
+
+<div class="moving">
+  <div><button id="topBtn">Top</button></div>
+  <div><button id="leftBtn">Left</button> <button id="rightBtn">Right</button></div>
+  <div><button id="downBtn">Down</button></div>
+  <label for="offsetNew">New offset: </label>
+  <input type="text" name="offsetNew" id="offsetNew">
+</div>
+
+<script>
+    // Задание HOME. все сделать на странице через JS
+    // На странице есть блок и 4 кнопки (вверх, вниз, влево, вправо) при нажатии на которые мышкой блок передвигается на странице на определенное количесвто пикселей 20
+    // PS сделать поле ввода на странице, где пользователь сможет вводить количество пкселей для изменения
+    const OFFSET_DEFAULT = 20;
+    const blockEl = document.querySelector('.block');
+    let offset;
+
+    const addListener = (element, event, handler, options = {}) => {
+        element.addEventListener(event, handler, options);
+    };
+
+    const moveBlock = (direction) => {
+        return () => {
+            const offsetValue = offset ? offset : OFFSET_DEFAULT;
+            const multiplier = ['top', 'left'].includes(direction) ? -1 : 1;
+
+            const offsetEl = offsetValue * multiplier;
+
+            if (['top', 'down'].includes(direction)) {
+                const y = blockEl.getBoundingClientRect().y;
+                const newTop = (y + offsetEl) < 0 ? 0 : y + offsetEl;
+
+                blockEl.style.top = `${newTop}px`;
+            } else {
+                const x = blockEl.getBoundingClientRect().x;
+                const newLeft = (x + offsetEl) < 0 ? 0 : x + offsetEl;
+
+                blockEl.style.left = `${newLeft}px`;
+            }
+        }
+    };
+
+    addListener(document.querySelector('#topBtn'), 'click', moveBlock('top'));
+    addListener(document.querySelector('#downBtn'), 'click', moveBlock('down'));
+    addListener(document.querySelector('#leftBtn'), 'click', moveBlock('left'));
+    addListener(document.querySelector('#rightBtn'), 'click', moveBlock('right'));
+
+    addListener(document.querySelector('#offsetNew'), 'change', (event) => {
+        const newValue = parseFloat(event.target.value);
+
+        if (isNaN(newValue) || newValue < 1) {
+            offset = null;
+            event.target.value = '';
+        } else {
+            offset = newValue;
+        }
+    });
+</script>
+
+</body>
+</html>
