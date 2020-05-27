@@ -1,0 +1,40 @@
+.price-block {
+  margin-bottom: 8px;
+  display: none;
+}
+
+.price-container {
+  border: 1px solid gray;
+  padding: 4px;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.price-btn {
+  width: 20px;
+  height: 20px;
+  border: 1px solid gray;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.price-input {
+  width: 100px;
+  color: #3cb878;
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 3px;
+}
+
+.price-input.focus {
+  color: #000;
+  outline: none;
+  border-color: #3cb878;
+  box-shadow: 0 0 5px 0.5px #3cb878;
+}
+
+.error {
+  color: red;
+  display: none;
+}
