@@ -6,14 +6,14 @@ const resetPrice = () => {
     document.querySelector('#price').value = '';
 };
 
-const focusHandler = (event) => {
+const focusHandler = event => {
     const elem = event.target;
 
     document.querySelector('.error').style.display = 'none';
     elem.classList.add('focus');
 };
 
-const blurHandler = (event) => {
+const blurHandler = event => {
     const elem = event.target;
     const newPrice = parseFloat(elem.value);
 

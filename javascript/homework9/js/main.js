@@ -1,8 +1,8 @@
 const ready = () => {
     let prevLi = document.querySelector('.tabs > li.active');
 
-    document.querySelectorAll('.tabs > li').forEach((elemLi) => {
-        elemLi.addEventListener('click', (event) => {
+    document.querySelectorAll('.tabs > li').forEach(elemLi => {
+        elemLi.addEventListener('click', event => {
             const elem = event.target;
             const tabName = elem.dataset.tab;
             const currTab = document.querySelector(`#${tabName}`);
