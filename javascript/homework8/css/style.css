@@ -34,7 +34,11 @@
   box-shadow: 0 0 5px 0.5px #3cb878;
 }
 
-.error {
+.price-input.error {
+  border-color: red;
+}
+
+.error-message {
   color: red;
   display: none;
 }

@@ -9,7 +9,8 @@ const resetPrice = () => {
 const focusHandler = event => {
     const elem = event.target;
 
-    document.querySelector('.error').style.display = 'none';
+    document.querySelector('.error-message').style.display = 'none';
+    elem.classList.remove('error');
     elem.classList.add('focus');
 };
 
@@ -24,8 +25,9 @@ const blurHandler = event => {
     }
 
     if (isNaN(newPrice) || newPrice < 0) {
-        document.querySelector('.price-block').style.display = 'none';
-        document.querySelector('.error').style.display = 'block';
+        resetPrice();
+        elem.classList.add('error');
+        document.querySelector('.error-message').style.display = 'block';
     } else {
         document.querySelector('.priceCurrent').innerHTML = newPrice;
         document.querySelector('.price-block').style.display = 'block';
