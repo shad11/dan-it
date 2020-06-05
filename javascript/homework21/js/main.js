@@ -3,6 +3,45 @@ const CIRCLE_BLOCK_CLASS = 'circle-block';
 const CIRCLES_ROW_CNT = 10;
 const CIRCLES_COLUMN_CNT = 10;
 
+// get random color
+const getRandomColor = () => {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+
+    return `rgb(${r}, ${g}, ${b})`;
+};
+
+// remove circle block
+const removeCircleBlock = () => {
+    const circleBlockEl = document.querySelector(`.${CIRCLE_BLOCK_CLASS}`);
+
+    if (circleBlockEl) {
+        circleBlockEl.remove();
+    }
+};
+
+// remove a block for inputting diameter
+const removeInputCircleBlock = () => {
+    const inputCircleBlock = document.body.querySelector(`.${INPUT_CIRCLE_CLASS}`);
+
+    if (inputCircleBlock) {
+        inputCircleBlock.remove();
+    }
+};
+
+// show or hide main button
+const showCircleBtnEl = (show = true) => {
+    const circleBtnEl = document.querySelector('.circleBtn');
+
+    if (show) {
+        circleBtnEl.style.display = 'block';
+    } else {
+        circleBtnEl.style.display = 'none';
+    }
+};
+
+// create a circle
 const createCircleEl = diameter => {
     const circleEl = document.createElement('div');
 
@@ -12,12 +51,13 @@ const createCircleEl = diameter => {
         width: ${diameter}px;
         height: ${diameter}px;
         border-radius: 50%;
-        background-color: green;
+        background-color: ${getRandomColor()};
     `;
 
     return circleEl;
 };
 
+// create a block with circles
 const createCircleBlock = (width = 0) => {
     const circlesBlock = document.createElement('div');
 
@@ -36,14 +76,7 @@ const createCircleBlock = (width = 0) => {
     return circlesBlock;
 };
 
-const removeCircleBlock = () => {
-    const circleBlockEl = document.querySelector(`.${CIRCLE_BLOCK_CLASS}`);
-
-    if (circleBlockEl) {
-        circleBlockEl.remove();
-    }
-};
-
+// a function for drawing circles
 const drawCircles = () => {
     const diameter = document.querySelector('#diameter').value;
     const circlesBlockEl = createCircleBlock(diameter*CIRCLES_COLUMN_CNT);
@@ -55,11 +88,15 @@ const drawCircles = () => {
         }
     }
 
-    removeCircleBlock();
+
     circlesBlockEl.append(fragment);
+
+    removeInputCircleBlock();
+    showCircleBtnEl(true);
     document.body.append(circlesBlockEl);
 };
 
+// create a block for inputting diameter
 const createInputCircleBlock = () => {
     const inputCircleBlock = document.createElement('div');
     inputCircleBlock.classList.add(INPUT_CIRCLE_CLASS);
@@ -79,21 +116,12 @@ const createInputCircleBlock = () => {
     return inputCircleBlock;
 };
 
-const removeInputCircleBlock = () => {
-    const inputCircleBlock = document.body.querySelector(`.${INPUT_CIRCLE_CLASS}`);
-
-    if (inputCircleBlock) {
-        inputCircleBlock.remove();
-    }
-};
-
 window.onload = () => {
     document.querySelector('.circleBtn').addEventListener('click', () => {
         const inputCircleBlockEl = createInputCircleBlock();
 
         removeCircleBlock();
-        removeInputCircleBlock();
-
+        showCircleBtnEl(false);
         document.body.append(inputCircleBlockEl);
     });
 };
