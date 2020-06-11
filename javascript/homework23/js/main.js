@@ -44,7 +44,7 @@ const clickElLeft = elem => {
     }
 
     if (elem.classList.contains('flag')) {
-        elem.classList.remove('flag');
+        return;
     }
 
     if (elem.classList.contains('bomb')) {
