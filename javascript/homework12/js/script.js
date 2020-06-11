@@ -4,14 +4,56 @@ let imgIdPrev;
 let showImgTimer;
 let timer;
 
- function showImg(id) {
-     if (imgId !== imgIdPrev) {
-         $(`.images-wrapper img:nth-child(${id})`).fadeIn(500);
-         $(`.images-wrapper img:nth-child(${imgIdPrev})`).fadeOut(500);
+const fadeIn = (elem, time) => {
+    elem.style.display = 'inline-block';
+    elem.style.opacity = 0;
+
+    let fadeTimer;
+    let start = Date.now();
+
+    const changeOpacity = () => {
+        elem.style.opacity = +elem.style.opacity + (Date.now() - start) / time;
+        start = Date.now();
+
+        if (+elem.style.opacity < 1) {
+            fadeTimer = setTimeout(changeOpacity, 16);
+        } else {
+            clearTimeout(fadeTimer);
+        }
+    };
+
+    changeOpacity();
+};
+
+const fadeOut = (elem, time) => {
+    elem.style.opacity = 1;
+
+    let start = Date.now();
+    let fadeTimer;
+
+    const changeOpacity = () => {
+        elem.style.opacity = +elem.style.opacity - (Date.now() - start) / time;
+        start = Date.now();
+
+        if (+elem.style.opacity > 0) {
+            fadeTimer = setTimeout(changeOpacity, 16);
+        } else {
+            elem.style.display = 'none';
+            clearTimeout(fadeTimer);
+        }
+    };
+
+    changeOpacity();
+};
+
+ const showImg = id => {
+     if (id !== imgIdPrev) {
+         fadeIn(document.querySelector(`img[data-img-id='${id}']`), 500);
+         fadeOut(document.querySelector(`img[data-img-id='${imgIdPrev}']`), 500);
      }
 
      imgIdPrev = id;
-}
+};
 
 const startTimer = () => {
     let cnt = 10;
