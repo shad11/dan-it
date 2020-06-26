@@ -1,7 +1,5 @@
-let previousNav;
 let previousServiceTab;
 let previousWorkTab;
-let previousNews;
 const LOAD_IMG_CNT = 12;
 let loadedImgCnt = 0;
 
@@ -31,24 +29,6 @@ const imgList = [
     {src: 'img/graphic_design/graphic-design10.jpg', category: 'graphic'},
     {src: 'img/wordpress/wordpress10.jpg', category: 'wordpress'},
 ];
-
-// method for navigation
-const onNavBar = () => {
-    previousNav = document.querySelector('.nav-link.active');
-
-
-    console.log(previousNav);
-    $('.nav-link').click(function(event) {
-        const currEl = event.target;
-
-        if (currEl !== previousNav) {
-            previousNav.classList.remove('active');
-            currEl.classList.add('active');
-        }
-
-        previousNav = currEl;
-    });
-};
 
 // method for service tabs
 const onServiceTabs = () => {
@@ -82,15 +62,53 @@ const onWorkTabs = () => {
             $(this).addClass('active');
 
             if (clickTab === 'all') {
-                $('.work-img-block img').show();
+                $('.work-img-overlay').show();
             } else {
-                $(`.work-img-block img[data-work-category="${clickTab}"]`).show();
-                $(`.work-img-block img:not([data-work-category="${clickTab}"])`).hide();
+                $(`.work-img-overlay[data-work-category="${clickTab}"]`).show();
+                $(`.work-img-overlay:not([data-work-category="${clickTab}"])`).hide();
             }
 
             previousWorkTab = clickTab;
         }
     });
+};
+
+// on work img block hover
+const workImgHoverEl = (elem) => {
+    const hoverEl = $.parseHTML(`
+      <div class="work-overlay">
+        <div class="icons">
+            <div class="icon-block work-link"><i class="fa fa-link fa-lg"></i></div>
+            <div class="icon-block work-search"><i class="fa fa-search fa-lg"></i></div>
+        </div>
+        <div class="text-block">
+            <div class="work-overflow-title">Creative design</div>
+            <div>Web Design</div>
+        </div>
+       </div>
+    `);
+
+    $(hoverEl).find('.work-link').click(function() {
+        const parentEl = $(this).closest('.work-img-overlay');
+        console.log('Clicking fa-link: ' + $(parentEl).find('img').attr('src'));
+    });
+
+    $(hoverEl).find('.work-search').click(function() {
+        const parentEl = $(this).closest('.work-img-overlay');
+        console.log('Clicking fa-search: ' + $(parentEl).find('img').attr('src'));
+    });
+
+    elem.append(hoverEl);
+};
+
+const onWorkImgHover = () => {
+    $('.work-img-overlay').hover(
+        function () {
+            workImgHoverEl($(this));
+        }, function() {
+            $(this).find('.work-overlay').remove();
+        }
+    );
 };
 
 // add loading images
@@ -102,12 +120,21 @@ const loadImg = () => {
     for (let i = startIndx; i < (startIndx + LOAD_IMG_CNT); i++) {
         const category = imgList[i].category;
         const display = category === previousWorkTab || previousWorkTab === 'all' ? 'block' : 'none';
-
-        $('<img>', {
-            'src': imgList[i].src,
+        const divEl = $('<div>', {
+            'class': 'work-img-overlay',
             'data-work-category': category,
             'style': `display: ${display}`,
-        }).appendTo(fragment);
+        });
+
+        divEl.append($('<img>', {
+            'src': imgList[i].src,
+            })
+        ).hover(function () {
+                workImgHoverEl($(this));
+            }, function() {
+                $(this).find('.work-overlay').remove();
+            }
+        ).appendTo(fragment);
 
         loadedImgCnt++;
     }
@@ -134,23 +161,6 @@ const onLoadImg = () => {
 
             showImg(newImgEl);
         }, 2000);
-    });
-};
-
-// processing news click
-const onNewsClick = () => {
-    previousNews = document.querySelector('.news-link.active');
-
-    $('.news-link').click(function(event) {
-        const elem = event.currentTarget;
-
-        if (elem !== previousNews) {
-            previousNews.classList.remove('active');
-            elem.classList.add('active');
-            previousNews = elem;
-        }
-
-        event.preventDefault();
     });
 };
 
@@ -184,25 +194,14 @@ const onSlider = () => {
         $(slick.$slides[currentSlide]).removeClass('active');
         $(slick.$slides[nextSlide]).addClass('active');
     });
-
-    $('.slider-arrow-prev').click(function() {
-        $(this).addClass('active');
-        $('.slider-arrow-next').removeClass('active');
-    });
-
-    $('.slider-arrow-next').click(function() {
-        $(this).addClass('active');
-        $('.slider-arrow-prev').removeClass('active');
-    });
 };
 
 // main method
 const onReady = () => {
-    onNavBar();
     onServiceTabs();
     onWorkTabs();
+    onWorkImgHover();
     onLoadImg();
-    onNewsClick();
     onSlider();
 };
 
