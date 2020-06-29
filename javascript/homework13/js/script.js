@@ -9,16 +9,13 @@ const onReady = () => {
 
     document.querySelector('.navbar-theme').addEventListener('click', () => {
         mainEl.classList.toggle('black');
+
         document.querySelector('.navbar-theme').innerText = mainEl.classList.contains('black')
             ? 'White theme'
             : 'Black theme';
+
+        localStorage.setItem('theme', mainEl.classList.contains('black') ? 'black' : 'white');
     });
 };
 
 document.addEventListener('DOMContentLoaded', onReady);
-
-window.addEventListener('beforeunload', () => {
-    const mainEl = document.querySelector('main');
-
-    localStorage.setItem('theme', mainEl.classList.contains('black') ? 'black' : 'white');
-});

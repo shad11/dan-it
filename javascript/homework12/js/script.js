@@ -2,7 +2,6 @@ let imgId = 1;
 let imgIdMax = 1;
 let imgIdPrev;
 let showImgTimer;
-let timer;
 
 const fadeIn = (elem, time) => {
     elem.style.display = 'inline-block';
@@ -11,18 +10,18 @@ const fadeIn = (elem, time) => {
     let fadeTimer;
     let start = Date.now();
 
-    const changeOpacity = () => {
+    const fadeInOpacity = () => {
         elem.style.opacity = +elem.style.opacity + (Date.now() - start) / time;
         start = Date.now();
 
         if (+elem.style.opacity < 1) {
-            fadeTimer = setTimeout(changeOpacity, 16);
+            fadeTimer = setTimeout(fadeInOpacity, 16);
         } else {
             clearTimeout(fadeTimer);
         }
     };
 
-    changeOpacity();
+    fadeInOpacity();
 };
 
 const fadeOut = (elem, time) => {
@@ -31,43 +30,28 @@ const fadeOut = (elem, time) => {
     let start = Date.now();
     let fadeTimer;
 
-    const changeOpacity = () => {
+    const fadeOutOpacity = () => {
         elem.style.opacity = +elem.style.opacity - (Date.now() - start) / time;
         start = Date.now();
 
         if (+elem.style.opacity > 0) {
-            fadeTimer = setTimeout(changeOpacity, 16);
+            fadeTimer = setTimeout(fadeOutOpacity, 16);
         } else {
             elem.style.display = 'none';
             clearTimeout(fadeTimer);
         }
     };
 
-    changeOpacity();
+    fadeOutOpacity();
 };
 
  const showImg = id => {
      if (id !== imgIdPrev) {
-         fadeIn(document.querySelector(`img[data-img-id='${id}']`), 500);
          fadeOut(document.querySelector(`img[data-img-id='${imgIdPrev}']`), 500);
+         fadeIn(document.querySelector(`img[data-img-id='${id}']`), 500);
      }
 
      imgIdPrev = id;
-};
-
-const startTimer = () => {
-    let cnt = 10;
-
-    document.querySelector('.timer-container span').innerHTML = cnt;
-
-    timer = setInterval(()=> {
-        cnt--;
-        document.querySelector('.timer-container span').innerHTML = cnt;
-    }, 1000);
-};
-
-const stopTimer = () => {
-    clearInterval(timer);
 };
 
 const stopImgTimer = () => {
@@ -78,23 +62,31 @@ const startShowImg = () => {
     document.querySelector('.btn-stop').disabled = false;
     document.querySelector('.btn-start').disabled = true;
 
-    showImgTimer = setTimeout(function run() {
-        stopTimer();
-        startTimer();
+    let cnt = 10;
 
-        if (imgId > imgIdMax) {
-            imgId = 1;
+    document.querySelector('.timer-container span').innerHTML = cnt;
+    showImg(imgId);
+    imgId++;
+
+    showImgTimer = setInterval( () => {
+        cnt--;
+
+        if (cnt === 0) {
+            if (imgId > imgIdMax) {
+                imgId = 1;
+            }
+
+            cnt = 10;
+
+            showImg(imgId);
+            imgId++;
         }
 
-        showImg(imgId);
-
-        imgId++;
-        showImgTimer = setTimeout(run, 10000);
-    });
+        document.querySelector('.timer-container span').innerHTML = cnt;
+    }, 1000);
 };
 
 const stopShowImg = () => {
-    stopTimer();
     stopImgTimer();
     document.querySelector('.timer-container span').innerHTML = '0';
     document.querySelector('.btn-stop').disabled = true;
