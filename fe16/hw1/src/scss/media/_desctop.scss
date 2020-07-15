@@ -1,0 +1,37 @@
+@media screen and (min-width: 1200px) {
+  .header {
+    margin: 7.375rem 0 1.725rem;
+
+    &__img {
+      height: 34.375rem;
+      margin-top: 0;
+    }
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .posts {
+    column-gap: 1.56rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .instagram {
+    margin-top: 4.31rem;
+
+    &__block {
+      margin-top: 1.5rem;
+      column-gap: 0.56rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    &__link {
+      right: 13.44rem;
+    }
+  }
+
+  .footer {
+    padding: 4.125rem 28.375rem;
+  }
+}

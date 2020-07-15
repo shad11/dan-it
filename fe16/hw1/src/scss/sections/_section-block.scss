@@ -1,0 +1,11 @@
+.section {
+  @include main-padding;
+
+  &__title {
+    font: 700 14px $font-family;
+    color: $color-title;
+    line-height: 1.375rem;
+    padding-top: 2.375rem;
+    text-transform: uppercase;
+  }
+}

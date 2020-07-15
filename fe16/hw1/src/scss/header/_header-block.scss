@@ -1,0 +1,14 @@
+.header {
+  @include main-padding;
+  margin-top: 1.5rem;
+
+  &__img {
+    height: 9.375rem;
+    margin-top: 1.5rem;
+  }
+
+  &__img img {
+    width: 100%;
+    height: 100%;
+  }
+}

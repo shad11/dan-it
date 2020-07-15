@@ -1,0 +1,32 @@
+.posts {
+  font: 400 14px $font-family;
+  margin-top: 1.5rem;
+  @include grid-base;
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 1.8rem;
+
+  &__img {
+    margin-bottom: 0.69rem;
+  }
+
+  &__img img {
+    width: 160px;
+    height: 140px;
+  }
+
+  &__title {
+    color: $color-title;
+    font-weight: 700;
+    line-height: 1.875rem;
+  }
+
+  &__desc {
+    color: #7C7C7C;
+    font-size: 11px;
+    line-height: 1.25rem;
+  }
+
+  &__text {
+    display: none;
+  }
+}

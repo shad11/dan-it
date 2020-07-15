@@ -1,0 +1,126 @@
+@media screen and (min-width: 768px) {
+  /* header */
+  .header {
+    margin: 2.6rem 0 0.625rem;
+
+    &__img {
+      height: 22.56rem;
+      margin-top: 2.7rem;
+    }
+  }
+
+  .menu {
+    height: auto;
+
+    &__btn {
+      display: none;
+    }
+
+    &__block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 0;
+    }
+
+    &__item {
+      width: auto;
+      cursor: pointer;
+      padding: 0 1rem;
+      border-bottom: none;
+    }
+  }
+
+  /* section block */
+  .section__title {
+    font-size: 16px;
+    padding-top: 2.9rem;
+  }
+
+  /* posts block */
+  .posts {
+    row-gap: 1.875rem;
+    grid-auto-rows: 1fr;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+
+    &__img {
+      float: left;
+      margin: 0 1.3rem 0 0;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__desc {
+      font-size: 12px;
+    }
+
+    &__text {
+      color: #5C5C5C;
+      display: block;
+      margin-top: 0.8rem;
+      line-height: 1.625rem;
+    }
+  }
+
+  /* instagram block */
+  .instagram {
+    position: relative;
+    margin-top: 3.75rem;
+    padding-bottom: 3rem;
+    background-color: rgba(0, 0, 0, 0.03);
+
+    &__link {
+      font: 700 13px $font-family;
+      color: #4E4E4E;
+      display: block;
+      position: absolute;
+      top: 2.9rem;
+      right: 5rem;
+      line-height: 1.375rem;
+      text-transform: uppercase;
+    }
+
+    &__link a {
+      color: #4E4E4E;
+      text-decoration: none;
+    }
+
+    &__block {
+      margin-top: 2.187rem;
+      column-gap: 0.56rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__item {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  /* footer */
+  .footer {
+    padding: 3.56rem 8.625rem;
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__desc {
+      margin-top: 1.375rem;
+      font-size: 16px;
+      line-height: 1.75rem;
+    }
+
+    &__social {
+      margin: 2.2rem 0;
+    }
+
+    &__contacts p {
+      display: inline-block;
+    }
+  }
+}

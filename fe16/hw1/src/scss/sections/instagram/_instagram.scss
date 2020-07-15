@@ -1,0 +1,24 @@
+.instagram {
+  margin-top: 0.668rem;
+  padding-bottom: 2.6rem;
+
+  &__link {
+    display: none;
+  }
+
+  &__block {
+    @include grid-base;
+    grid-template-rows: 1fr;
+    margin-top: 0.8rem;
+  }
+
+  &__item {
+    max-width: 301px;
+    max-height: 301px;
+  }
+
+  &__item img {
+    width: 100%;
+    height: 100%;
+  }
+}
