@@ -11,7 +11,7 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
 const clear = () => {
-    return gulp.src('./dist')
+    return gulp.src('./dist', {allowEmpty: true, read: false})
         .pipe(clean());
 };
 
