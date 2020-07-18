@@ -18,7 +18,7 @@ const clear = () => {
 const buildCSS = () => {
     const plugins = [
         uncss({
-            html: ['index.html']
+            html: ['./src/index.html']
         }),
     ];
 
@@ -27,13 +27,13 @@ const buildCSS = () => {
         cascade: false
     };
 
-    return gulp.src('./src/scss/*.scss')
+    return gulp.src('./src/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(plugins))
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(concat('styles.min.css'))
         .pipe(cleanCSS({level: 2}))
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./dist/css'))
         .pipe(browserSync.stream());
 };
 
@@ -41,7 +41,7 @@ const buildJS = () => {
     return gulp.src('./src/js/*.js')
         .pipe(concat('scripts.min.js'))
         .pipe(terser())
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest('./dist/js'))
         .pipe(browserSync.stream());
 };
 
@@ -51,18 +51,27 @@ const copyImg = () => {
         .pipe(gulp.dest('./dist/img'));
 };
 
+const copyIndex = () => {
+    return gulp.src('./src/index.html')
+        .pipe(gulp.dest('./dist'))
+        .pipe(browserSync.stream());
+};
+
 const watch = () => {
-    gulp.watch('./src/scss/*.scss', buildCSS)
+    gulp.watch('./src/scss/**/*.scss', buildCSS)
         .on('change', browserSync.reload);
 
     gulp.watch('./src/js/*.js', buildJS)
+        .on('change', browserSync.reload);
+
+    gulp.watch('./src/index.html', copyIndex)
         .on('change', browserSync.reload);
 };
 
 const browserInit = (done) => {
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./dist"
         },
         port: 3000,
         notify: false
@@ -73,7 +82,7 @@ const browserInit = (done) => {
     done();
 };
 
-gulp.task('buildFiles', gulp.parallel(buildCSS, buildJS, copyImg));
+gulp.task('buildFiles', gulp.parallel(buildCSS, buildJS, copyImg, copyIndex));
 gulp.task('clear', clear);
 
 gulp.task('build', gulp.series(clear, 'buildFiles'));

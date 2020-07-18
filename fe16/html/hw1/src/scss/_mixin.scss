@@ -1,15 +1,5 @@
 @mixin main-padding {
-  @media screen and (min-width: 320px) {
-    padding: 0 1.5rem;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding: 0 5rem;
-  }
-
-  @media screen and (min-width: 1200px) {
-    padding: 0 13.44rem;
-  }
+  padding: 0 0.625rem;
 }
 
 @mixin grid-base {

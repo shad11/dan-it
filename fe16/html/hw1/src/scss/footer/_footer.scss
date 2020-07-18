@@ -13,6 +13,8 @@
   }
 
   &__desc {
+    max-height: 3.75rem;
+    overflow: hidden;
     margin-top: 0.5rem;
     font-size: 12px;
     line-height: 1.25rem;

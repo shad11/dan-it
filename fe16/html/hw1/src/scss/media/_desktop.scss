@@ -1,15 +1,9 @@
 @media screen and (min-width: 1200px) {
   .header {
-    margin: 7.375rem 0 1.725rem;
-
     &__img {
       height: 34.375rem;
-      margin-top: 0;
+      margin-top: 3.18rem;
     }
-  }
-
-  .menu {
-    display: none;
   }
 
   .posts {
@@ -23,11 +17,12 @@
     &__block {
       margin-top: 1.5rem;
       column-gap: 0.56rem;
+      justify-items: stretch;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
     &__link {
-      right: 13.44rem;
+      right: 0.625rem;
     }
   }
 
