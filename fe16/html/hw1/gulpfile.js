@@ -83,7 +83,6 @@ const browserInit = (done) => {
 };
 
 gulp.task('buildFiles', gulp.parallel(buildCSS, buildJS, copyImg, copyIndex));
-gulp.task('clear', clear);
 
 gulp.task('build', gulp.series(clear, 'buildFiles'));
 gulp.task('dev', gulp.series(browserInit, watch));
