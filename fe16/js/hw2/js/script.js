@@ -51,7 +51,8 @@ const getBooks = () => {
 };
 
 const createBookUl = (books) => {
-    const elemUl = document.createElement('ul');
+    const elemUl = document.createDocumentFragment();
+    elemUl.append(document.createElement('ul'));
 
     books.forEach(book => {
         const elemLi = document.createElement('li');
