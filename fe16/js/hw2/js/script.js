@@ -33,7 +33,7 @@ const CHECK_PROPERTIES = ['name', 'author', 'price'];
 const checkProperties = (object) => {
     for (const prop of CHECK_PROPERTIES) {
         if (!(prop in object)) {
-            throw new Error(`A property ${prop} doesn't exist!`);
+            throw new Error(`A property ${prop} doesn't exist in ${JSON.stringify(object)}!`);
         }
     }
 
