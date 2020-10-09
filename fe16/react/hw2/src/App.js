@@ -9,11 +9,11 @@ class App extends PureComponent {
     //productsChosen: [],
     //productsCard: [],
     cart: [],
-    chosen: []
+    favourites: []
   };
 
   componentDidMount() {
-    this.setState({ chosen: JSON.parse(localStorage.getItem('chosen')) || [] });
+    this.setState({ favourites: JSON.parse(localStorage.getItem('favourites')) || [] });
     this.setState({ cart: JSON.parse(localStorage.getItem('cart')) || [] });
 
     axios.get('/products.json')
@@ -22,24 +22,24 @@ class App extends PureComponent {
         })
   }
 
-  saveFavourites = (chosenNew) => {
-    this.setState({ chosen: chosenNew });
-    localStorage.setItem('chosen', JSON.stringify(chosenNew));
+  saveFavourites = (favouritesNew) => {
+    this.setState({ favourites: favouritesNew });
+    localStorage.setItem('favourites', JSON.stringify(favouritesNew));
   };
 
   toggleFavourite = (setNumber) => {
-    const { chosen } = this.state;
-    const indexOf = chosen.indexOf(setNumber);
+    const { favourites } = this.state;
+    const indexOf = favourites.indexOf(setNumber);
 
     if (indexOf > -1) {
-      const chosenNew = [...chosen];
+      const favouritesNew = [...favourites];
 
-      chosenNew.splice(indexOf, 1);
-      this.saveFavourites(chosenNew);
+      favouritesNew.splice(indexOf, 1);
+      this.saveFavourites(favouritesNew);
     } else {
-      const chosenNew = [...chosen, setNumber];
+      const favouritesNew = [...favourites, setNumber];
 
-      this.saveFavourites(chosenNew);
+      this.saveFavourites(favouritesNew);
     }
   };
 
@@ -51,14 +51,14 @@ class App extends PureComponent {
   };
 
   render() {
-    const { isLoading, products, chosen } = this.state;
+    const { isLoading, products, favourites } = this.state;
 
     if (isLoading) {
       return null;
     }
 
     return (
-        <Products products={products} chosen={chosen} toggleFavourite={this.toggleFavourite} productToCart={this.productToCart}/>
+        <Products products={products} favourites={favourites} toggleFavourite={this.toggleFavourite} productToCart={this.productToCart}/>
     )
   }
 }

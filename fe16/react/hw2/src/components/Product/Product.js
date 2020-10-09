@@ -69,17 +69,19 @@ class Product extends PureComponent {
 Product.propTypes = {
     name: PropTypes.string.isRequired,
     producer: PropTypes.string,
+    setNumber: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     imgUrl: PropTypes.string,
-    setNumber: PropTypes.number.isRequired,
+    chosen: PropTypes.bool,
     color: PropTypes.string,
     toggleFavourite: PropTypes.func,
     productToCard: PropTypes.func
 };
 
 Product.defaultProps = {
-    producer: 'Unknow',
+    producer: 'Unknown',
     imgUrl: './images/productDefault.jpeg',
+    chosen: false,
     color: '',
     toggleFavourite: undefined,
     productToCard: undefined

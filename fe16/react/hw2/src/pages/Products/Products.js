@@ -1,11 +1,11 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Product from "../../components/Product/Product";
 import './Products.scss';
 
 class Products extends PureComponent {
     render() {
-        const { products, chosen, toggleFavourite, productToCart } = this.props;
+        const { products, favourites, toggleFavourite, productToCart } = this.props;
 
         return (
             <div className='products'>
@@ -13,7 +13,7 @@ class Products extends PureComponent {
                     product => {
                         return <Product
                             key={product.setNumber}
-                            chosen={chosen.indexOf(product.setNumber) > -1}
+                            chosen={favourites.indexOf(product.setNumber) > -1}
                             toggleFavourite={toggleFavourite}
                             productToCart={productToCart}
                             {...product}
@@ -25,16 +25,16 @@ class Products extends PureComponent {
     }
 }
 
-Product.propTypes = {
+Products.propTypes = {
     products: PropTypes.array,
-    chosen: PropTypes.array,
+    favourites: PropTypes.array,
     toggleFavourite: PropTypes.func,
     productToCard: PropTypes.func
 };
 
-Product.defaultProps = {
+Products.defaultProps = {
     products: [],
-    chosen: [],
+    favourites: [],
     toggleFavourite: undefined,
     productToCard: undefined
 };
