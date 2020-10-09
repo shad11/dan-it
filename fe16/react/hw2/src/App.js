@@ -6,8 +6,6 @@ class App extends PureComponent {
   state = {
     isLoading: true,
     products: [],
-    //productsChosen: [],
-    //productsCard: [],
     cart: [],
     favourites: []
   };
