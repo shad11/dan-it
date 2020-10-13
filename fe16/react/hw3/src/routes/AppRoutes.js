@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import Products from "../pages/Products/Products";
 import Favourites from "../pages/Favourites/Favourites";
@@ -12,8 +12,7 @@ const AppRoutes = (props) => {
 
     return (
         <Switch>
-            <Redirect exact from='/' to='/products' />
-            <Route path='/products' render={() => <Products {...mainProps}/>} />
+            <Route exact path='/' render={() => <Products {...mainProps}/>} />
             <Route path='/favourites' render={() => <Favourites {...mainProps}/>} />
             <Route path='/cart' render={() => <Cart {...cartProps}/>} />
         </Switch>
@@ -23,7 +22,7 @@ const AppRoutes = (props) => {
 AppRoutes.propTypes = {
     products: PropTypes.array,
     favourites: PropTypes.array,
-    cart: PropTypes.array,
+    cart: PropTypes.object,
     toggleFavourite: PropTypes.func,
     productToCart: PropTypes.func,
     productFromCart: PropTypes.func
@@ -32,7 +31,7 @@ AppRoutes.propTypes = {
 AppRoutes.defaultProps = {
     products: [],
     favourites: [],
-    cart: [],
+    cart: {},
     toggleFavourite: undefined,
     productToCart: undefined,
     productFromCart: undefined

@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Header from "./components/Header/Header";
+import Loader from "./components/Loader/Loader";
 import AppRoutes from "./routes/AppRoutes";
 import './App.scss';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     setFavourites(JSON.parse(localStorage.getItem('favourites')) || []);
-    setCart(JSON.parse(localStorage.getItem('cart')) || []);
+    setCart(JSON.parse(localStorage.getItem('cart')) || {});
 
     axios.get('/products.json')
         .then(res => {
@@ -42,32 +43,38 @@ const App = () => {
   };
 
   const productToCart = (id) => {
-    setCart([...cart, id]);
-    localStorage.setItem('cart', JSON.stringify([...cart, id]));
+    if (cart.hasOwnProperty(id)) {
+      cart[id]++;
+    } else {
+      cart[id] = 1;
+    }
+
+    setCart({...cart});
+
+    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   const productFromCart = (id) => {
-    const cartNew = cart.filter(productId => productId !== id);
+    delete cart[id];
 
-    setCart(cartNew);
-    localStorage.setItem('cart', JSON.stringify(cartNew));
+    setCart({...cart});
+    localStorage.setItem('cart', JSON.stringify(cart));
   };
-
-  if (isLoading) {
-    return null;
-  }
 
   return (
       <>
-        <Header/>
-        <AppRoutes
-            products={products}
-            favourites={favourites}
-            cart={cart}
-            toggleFavourite={toggleFavourite}
-            productToCart={productToCart}
-            productFromCart={productFromCart}
-        />
+        <Header cartCnt={Object.keys(cart).length} favCnt={favourites.length}/>
+        { isLoading ?
+            <Loader /> :
+            <AppRoutes
+                products={products}
+                favourites={favourites}
+                cart={cart}
+                toggleFavourite={toggleFavourite}
+                productToCart={productToCart}
+                productFromCart={productFromCart}
+            />
+        }
       </>
   )
 };

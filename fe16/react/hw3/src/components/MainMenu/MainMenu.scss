@@ -1,4 +1,4 @@
-.header .menu {
+.main-menu {
   list-style-type: none;
 
   &__link {
@@ -18,15 +18,6 @@
 
     a.selected {
       color: #ff6a87;
-    }
-  }
-
-  &__right {
-    float: right;
-
-    a {
-      font-size: 18px;
-      font-style: italic;
     }
   }
 }

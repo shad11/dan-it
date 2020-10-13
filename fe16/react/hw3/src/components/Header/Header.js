@@ -1,10 +1,14 @@
 import React from "react";
-import Menu from "../Menu/Menu";
+import MainMenu from "../MainMenu/MainMenu";
+import AddMenu from "../AddMenu/AddMenu";
 import './Header.scss';
 
-const Header = () => (
+const Header = (props) => (
     <div className='header'>
-        <Menu />
+        <MainMenu />
+        <div className='header__right'>
+            <AddMenu {...props}/>
+        </div>
     </div>
 );
 

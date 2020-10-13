@@ -10,16 +10,22 @@ const Favourites = (props) => {
 
     return (
         <div className='products'>
-            {productsFavourite.map(
-                product => {
-                    return <Product
-                        key={product.id}
-                        chosen={true}
-                        toggleFavourite={toggleFavourite}
-                        productToCart={productToCart}
-                        {...product}
-                    />
-                })
+            {
+                productsFavourite.length === 0 &&
+                <div className='products__title'>No products in your favourites!</div>
+            }
+            {
+                productsFavourite.length > 0 &&
+                productsFavourite.map(
+                    product => {
+                        return <Product
+                            key={product.id}
+                            chosen={true}
+                            toggleFavourite={toggleFavourite}
+                            productToCart={productToCart}
+                            {...product}
+                        />
+                    })
             }
         </div>
     );
