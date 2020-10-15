@@ -63,7 +63,10 @@ const App = () => {
 
   return (
       <>
-        <Header cartCnt={Object.keys(cart).length} favCnt={favourites.length}/>
+        <Header
+            cartCnt={Object.values(cart).reduce((a, b) => a + b, 0)}
+            favCnt={favourites.length}
+        />
         { isLoading ?
             <Loader /> :
             <AppRoutes
