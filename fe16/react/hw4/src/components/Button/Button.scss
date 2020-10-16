@@ -1,0 +1,35 @@
+.btnCart {
+  font: 10px Arial;
+  color: #fff;
+  padding: 9px 6px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  background-color: #1e1e20;
+}
+
+.btnModal {
+  width: 101px;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.btnModalClose {
+  float: right;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  font-size: 22px;
+  background-color: transparent;
+}
+
+.btn-red {
+  background-color: #b3382c;
+}

@@ -1,0 +1,4 @@
+export const PRODUCTS_LOADING = 'PRODUCTS_LOADING';
+export const PRODUCTS_SAVE = 'PRODUCTS_SAVE';
+export const FAVOURITES_SAVE = 'FAVOURITES_SAVE';
+export const CART_SAVE = 'CART_SAVE';

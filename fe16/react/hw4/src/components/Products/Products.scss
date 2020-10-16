@@ -1,0 +1,14 @@
+.products {
+  font: 13px Arial, serif;
+  color: #2a2b2c;
+  line-height: 1.38;
+  margin-top: 20px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  &__title {
+    font-size: 20px;
+  }
+}
