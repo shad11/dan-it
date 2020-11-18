@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import MainMenu from "../../components/MainMenu";
-import AddMenu from "../../components/AddMenu";
+import { MainMenu, AddMenu } from "../../components/Menu";
 import './Header.scss';
 
 const Header = (props) => (

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Loader from "../../components/Loader";
 import Products from "../../components/Products";
-import OrderForm from "../../components/Forms/OrderForm";
+import { OrderForm } from "../../components/Forms";
 import PropTypes from "prop-types";
 import "./Cart.scss";
 
