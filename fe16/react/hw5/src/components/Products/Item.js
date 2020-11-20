@@ -41,16 +41,16 @@ const Item = (props) => {
                     !isCart &&
                     <div className='item__price'>
                         <span>$ {price.toFixed(2)}</span>
-                        <Button text='Add to cart' className='btnCart' onClick={() => {showModalToCart(id)}} />
+                        <Button text='Add to cart' className='btnCart' onClick={() => {showModalToCart(id)}} data-testid='modal-to-cart'/>
                     </div>
                 }
                 {
                     isCart &&
                     <div className='item__total'>
                         <span>
-                            <Button text='-' className='btnCartCnt' onClick={() => decreaseCartCount(id)} />
+                            <Button text='-' className='btnCartCnt' onClick={() => decreaseCartCount(id)} data-testid='cart-decrease'/>
                             <span className='item__count'>{count}</span>
-                            <Button text='+' className='btnCartCnt' onClick={() => increaseCartCount(id)} />
+                            <Button text='+' className='btnCartCnt' onClick={() => increaseCartCount(id)} data-testid='cart-increase'/>
                         </span>
                         <span>${(price * count).toFixed(2)}</span>
                     </div>
@@ -70,7 +70,7 @@ Item.propTypes = {
     isFavourite: PropTypes.bool,
     isCart: PropTypes.bool,
     count: PropTypes.number,
-    toggleFavourite: PropTypes.func.isRequired,
+    toggleFavourite: PropTypes.func,
     showModalToCart: PropTypes.func,
     showModalFromCart: PropTypes.func,
 };
@@ -82,6 +82,7 @@ Item.defaultProps = {
     isFavourite: false,
     isCart: false,
     count: 1,
+    toggleFavourite: () => {},
     showModalToCart: () => {},
     showModalFromCart: () => {},
 };

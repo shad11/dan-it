@@ -56,7 +56,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
     header: 'Modal window',
     closeButton: true,
-    text: '',
+    text: 'Hello',
     actions: (<></>),
     closeFunc: () => {},
     headerColorClass: 'modal-header-red',
