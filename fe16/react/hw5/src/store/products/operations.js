@@ -1,5 +1,5 @@
 import axios from "axios";
-import {productsLoading, savingFavourites, savingProducts, savingCart} from "./actions";
+import { productsLoading, savingFavourites, savingProducts, savingCart, favouritesCntSet, cartCntSet } from "./actions";
 
 export const loadProducts = () => dispatch => {
     dispatch(productsLoading(true));
@@ -34,11 +34,12 @@ export const loadCart = () => dispatch => {
     dispatch(productsLoading(true));
 
     const cart = JSON.parse(localStorage.getItem('cart')) || {};
+    const favourites = JSON.parse(localStorage.getItem('favourites')) || [];
 
     axios.get('/products.json')
         .then(res => {
             const data = res.data.filter(product => cart.hasOwnProperty(product.id))
-                .map(product => ({...product, isCart: true, count: cart[product.id]}));
+                .map(product => ({...product, isCart: true, count: cart[product.id], isFavourite: favourites.indexOf(product.id) > -1}));
 
             dispatch(savingCart(data));
             dispatch(productsLoading(false));
@@ -47,91 +48,108 @@ export const loadCart = () => dispatch => {
 
 export const toggleFavourite = (productId) => (dispatch, getState) => {
     const { products } = getState();
-    const { data, favourites } = products;
+    const { data, cart } = products;
+    let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
 
-    const index = data.findIndex(product => product.id === productId);
-
-    const productsArr = [...data];
-    let favouritesArr = [];
-
-    productsArr[index].isFavourite = !productsArr[index].isFavourite;
-
-    if (!productsArr[index].isFavourite) {
-        favouritesArr = favourites.filter(product => product.id !== productId);
+    if (favourites.includes(productId)) {
+        favourites = favourites.filter(id => id !== productId);
     } else {
-        favouritesArr = [...favourites, productsArr[index]];
+        favourites = [...favourites, productId];
     }
 
-    localStorage.setItem('favourites', JSON.stringify(favouritesArr.map(product => product.id)));
+    localStorage.setItem('favourites', JSON.stringify(favourites));
 
-    dispatch(savingProducts(productsArr));
-    dispatch(savingFavourites(favouritesArr));
+    let index = data.findIndex(product => product.id === productId);
+    if (index > -1) {
+        const productsArr = [...data];
+
+        productsArr[index].isFavourite = !productsArr[index].isFavourite;
+        dispatch(savingProducts(productsArr));
+    }
+
+    index = cart.findIndex(product => product.id === productId);
+    if (index > -1) {
+        const cartArr = [...cart];
+
+        cartArr[index].isFavourite = !cartArr[index].isFavourite;
+        dispatch(savingCart(cartArr));
+    }
+
+    dispatch(favouritesCntSet(favourites.length));
 };
 
 export const addToCart = (productId) => (dispatch, getState) => {
     const { products } = getState();
-    const { cart, data } = products;
+    const { cartCnt } = products;
 
-    let cartArr = [...cart];
-    const index = cartArr.findIndex(product => product.id === productId);
+    const cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-    if (index > -1) {
-        cartArr[index].count++;
+    if (cart[productId]) {
+        cart[productId]++;
     } else {
-        const product = data.find(elem => elem.id === productId);
-        cartArr = [...cartArr, {...product, isCart: true, count: 1}];
+        cart[productId] = 1;
     }
 
-    localStorage.setItem('cart', JSON.stringify(
-        cartArr.reduce((prev, curr) => {
-            prev[curr.id] = curr.count;
-            return prev;
-        }, {})
-    ));
-
-    dispatch(savingCart(cartArr));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    dispatch(cartCntSet(cartCnt + 1));
 };
 
 export const removeFromCart = (productId) => (dispatch, getState) => {
     const { products } = getState();
-    const { cart } = products;
+    const { cartCnt, cart } = products;
+
+    const cartStorage = JSON.parse(localStorage.getItem('cart')) || {};
+    const { [productId]: remove, ...newCart} = cartStorage;
+
+    localStorage.setItem('cart', JSON.stringify(newCart));
 
     const cartArr = [...cart].filter(product => product.id !== productId);
 
-    localStorage.setItem('cart', JSON.stringify(
-        cartArr.reduce((prev, curr) => {
-            prev[curr.id] = curr.count;
-            return prev;
-        }, {})
-    ));
-
     dispatch(savingCart(cartArr));
+    dispatch(cartCntSet(cartCnt - remove));
 };
 
 export const increaseCartCount = (productId) => (dispatch, getState) => {
     const { products } = getState();
-    const { cart } = products;
+    const { cartCnt, cart } = products;
 
-    const product = cart.find(elem => elem.id === productId);
-    product.count++;
+    const cartStorage = JSON.parse(localStorage.getItem('cart')) || {};
 
-    dispatch(savingCart(cart));
+    cartStorage[productId]++;
+    localStorage.setItem('cart', JSON.stringify(cartStorage));
+
+    const cartArr = [...cart];
+    const index = cartArr.findIndex(product => product.id === productId);
+    cartArr[index].count++;
+
+    dispatch(savingCart(cartArr));
+    dispatch(cartCntSet(cartCnt + 1));
 };
 
 export const decreaseCartCount = (productId) => (dispatch, getState) => {
     const { products } = getState();
-    const { cart } = products;
+    const { cartCnt, cart } = products;
 
-    const product = cart.find(elem => elem.id === productId);
-    product.count = product.count > 0 ? product.count - 1 : product.count;
+    const cartStorage = JSON.parse(localStorage.getItem('cart')) || {};
 
-    dispatch(savingCart(cart));
+    if (cartStorage[productId] === 1) {
+        dispatch(removeFromCart(productId));
+    } else {
+        cartStorage[productId]--;
+        localStorage.setItem('cart', JSON.stringify(cartStorage));
+
+        const cartArr = [...cart];
+        const index = cartArr.findIndex(product => product.id === productId);
+        cartArr[index].count--;
+
+        dispatch(savingCart(cartArr));
+        dispatch(cartCntSet(cartCnt - 1));
+    }
 };
 
 export const makeOrder = ({data}) => (dispatch, getState) => {
     const { products } = getState();
     const { cart } = products;
-
 
     return new Promise(resolve => {
         setTimeout(() => {
@@ -143,7 +161,9 @@ export const makeOrder = ({data}) => (dispatch, getState) => {
             );
 
             localStorage.removeItem('cart');
+
             dispatch(savingCart([]));
+            dispatch(cartCntSet(0));
 
             resolve(true);
         }, 4000);

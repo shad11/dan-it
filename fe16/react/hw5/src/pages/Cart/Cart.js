@@ -1,30 +1,44 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import Loader from "../../components/Loader";
 import Products from "../../components/Products";
 import { OrderForm } from "../../components/Forms";
 import PropTypes from "prop-types";
 import "./Cart.scss";
+import {loadCart} from "../../store/products/operations";
 
-const Cart = ({ isLoading, products }) => (
-    isLoading
-        ? <Loader />
-        : <div className="cart">
-            <div className="cart__form"><OrderForm /></div>
-            <Products products={products} />
-        </div>
-);
+const Cart = ({ isLoading, products, cartCnt, load }) => {
+    const initFetch = useCallback(() => {
+        load()
+    }, [load]);
+
+    useEffect(() => {
+        initFetch();
+    }, [initFetch]);
+
+    return (
+        isLoading
+            ? <Loader />
+            : <div className="cart">
+                {!!cartCnt && <div className="cart__form"><OrderForm /></div>}
+                <Products products={products} />
+            </div>
+    );
+};
 
 const mapStateToProps = ({ products }) => {
-    const { favourites, cart } = products;
-    const favouritesId = favourites.map(elem => elem.id);
-    const cartArr = cart.map(elem => ({...elem, isFavourite: favouritesId.indexOf(elem.id) > 0}));
+    const { cart, cartCnt } = products;
 
     return {
         isLoading: products.isLoading,
-        products: cartArr,
+        products: cart,
+        cartCnt
     }
 };
+
+const mapDispatchToProps = dispatch => ({
+    load: () => dispatch(loadCart())
+});
 
 Cart.propTypes = {
     isLoading: PropTypes.bool,
@@ -36,4 +50,4 @@ Cart.defaultProps = {
     products: []
 };
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

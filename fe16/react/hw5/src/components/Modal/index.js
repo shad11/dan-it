@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import Index from "../Button";
+import Button from "../Button";
 import "./Modal.scss";
 
 const Modal = (props) =>  {
@@ -28,7 +28,7 @@ const Modal = (props) =>  {
                 <div className={`modal__header ${headerColorClass}`}>
                     {
                         closeButton &&
-                        <Index className='btnModalClose' text="&#x2715;" onClick={closeFunc} />
+                        <Button className='btnModalClose' text="&#x2715;" onClick={closeFunc} />
                     }
                     <div>{header}</div>
                 </div>

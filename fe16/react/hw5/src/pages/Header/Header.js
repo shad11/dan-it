@@ -13,11 +13,11 @@ const Header = (props) => (
 );
 
 const mapStateToProps = ({ products }) => {
-    const { favourites, cart } = products;
+    const { favouritesCnt, cartCnt } = products;
 
     return {
-        favCnt: favourites.length,
-        cartCnt: cart.reduce((prev, curr) => prev + curr.count, 0)
+        favCnt: favouritesCnt,
+        cartCnt
     }
 };
 

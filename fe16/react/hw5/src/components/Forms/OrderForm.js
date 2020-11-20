@@ -50,13 +50,14 @@ export default connect(null, mapDispatchToProps)
         }),
         validationSchema: OrderSchema,
         handleSubmit: async (values, { setSubmitting, resetForm, props}) => {
-            const result = await props.makeOrder({data: values});
+            await props.makeOrder({data: values});
+            //const result = await props.makeOrder({data: values});
 
-            if (result) {
-                resetForm({values: ''});
-            }
+            // if (result) {
+            //     resetForm({values: ''});
+            // }
 
-            setSubmitting(false);
+            //setSubmitting(false);
         }
     })
     (OrderForm)

@@ -19,3 +19,13 @@ export const savingCart = (data) => ({
     type: types.CART_SAVE,
     payload: data
 });
+
+export const favouritesCntSet = (cnt) => ({
+    type: types.FAVOURITES_CNT_SET,
+    payload: cnt
+});
+
+export const cartCntSet = (cnt) => ({
+    type: types.CART_CNT_SET,
+    payload: cnt
+});
